@@ -1,0 +1,11 @@
+replicaCount: 1
+
+labels:
+  AppName: myspringapp
+  AppVersion: "1.0"
+
+image:
+  repository: dockerworkshopdallas/java
+  tag: release
+  pullPolicy: IfNotPresent
+  containerPort: 8181

@@ -1,0 +1,46 @@
+replicaCount: 1
+
+labels:
+  AppName: myspringapp
+  AppVersion: "1.0"
+
+rollingUpdate:
+  ltsurge: 25%
+  maxUnavailable: 25%
+
+image:
+  repository: dockerworkshopdallas/java
+  tag: release
+  pullPolicy: IfNotPresent
+  containerPort: 8181
+
+spec:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8181
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+   cpu: 200m
+   memory: 256Mi
+  requests:
+   cpu: 100m
+   memory: 128Mi
+
+livenessProbe:
+  path: /demo/demo1
+  port: 8181
+  initialDelaySeconds: 60
+  periodSeconds: 60
+  failureThreshold: 3
+
+readinessProbe:
+  path:  /demo/demo1
+  port: 8181
+  initialDelaySeconds: 60
+  periodSeconds: 60
+  successThreshold: 1

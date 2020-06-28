@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-{{ .Chart.Version }}-deployment
+  labels:
+    run: {{quote .Values.labels.AppName }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    AppName: {{quote .Values.labels.AppName }}
+    AppVersion: {{quote .Values.labels.AppVersion }}
+spec:
+  selector:
+    matchLabels:
+      run: {{quote .Values.labels.AppName }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        run: {{quote .Values.labels.AppName }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        AppName: {{quote .Values.labels.AppName }}
+        AppVersion: {{quote .Values.labels.AppVersion }}
+        container: app
+    spec:
+      containers:
+        - name: {{quote .Values.labels.AppName }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort:  {{ .Values.image.containerPort }}

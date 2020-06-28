@@ -1,0 +1,16 @@
+replicaCount: 1
+
+labels:
+  AppName: myspringapp
+  AppVersion: "1.0"
+
+image:
+  repository: dockerworkshopdallas/java
+  tag: release
+  pullPolicy: IfNotPresent
+  containerPort: 8181
+
+spec:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8181
