@@ -56,7 +56,7 @@ Using **curl**, call the service on port 8080 (the forwarded port)
 
 `curl http://127.0.0.1:8080`{{execute}}
 
-![Expected response](/dallas-k8s-bootcamp/scenarios/session-03-lab2-helm-create-chart/assets/running-service-1.png)
+![Expected response](running-service-1.png)
 
 ## Clean up
 
