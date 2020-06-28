@@ -22,18 +22,23 @@
 
   `cp ~/charts/deployment1.yaml myspringapp/templates/deployment.yaml`{{execute}}
 
-  Using `ls -lR myspringapp`{{execute}} we can see the structure of the directory
+  Using `ls -alR myspringapp`{{execute}} we can see the structure of the directory
   ```
-  $ ls -lR myspringapp
+  $ ls -alR myspringapp
   myspringapp:
-  total 12
-  -rw-r--r-- 1 root root  108 Jun 28 14:19 Chart.yaml
-  drwxr-xr-x 2 root root 4096 Jun 28 14:19 templates
-  -rw-r--r-- 1 root root  180 Jun 28 14:19 values.yaml
+  total 24
+  drwxr-xr-x  3 root root 4096 Jun 28 15:17 .
+  drwx------ 15 root root 4096 Jun 28 15:17 ..
+  -rw-r--r--  1 root root  108 Jun 28 15:17 Chart.yaml
+  -rw-r--r--  1 root root  342 Jun 28 15:17 .helmignore
+  drwxr-xr-x  2 root root 4096 Jun 28 15:18 templates
+  -rw-r--r--  1 root root  180 Jun 28 15:17 values.yaml
 
   myspringapp/templates:
-  total 4
-  -rw-r--r-- 1 root root 1054 Jun 28 14:19 deployment.yaml
+  total 12
+  drwxr-xr-x 2 root root 4096 Jun 28 15:18 .
+  drwxr-xr-x 3 root root 4096 Jun 28 15:17 ..
+  -rw-r--r-- 1 root root 1054 Jun 28 15:18 deployment.yaml
   ```
 
 ## Let't take a look around and see what this chart consists of

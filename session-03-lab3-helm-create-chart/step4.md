@@ -291,13 +291,47 @@ Use the following commands to see the events happening on the pod and to see its
 
 `kubectl describe pod $POD_NAME`{{execute}} You may see some 'failures' but that is likely due to the timing of our probes and the startup time of the service.
 
-`kubectl get pod $POD_NAME`{{execute}} If you see the Ready status as 0/1: Because of the probe definitions and service startup time, it may take a few minutes before we see the pod as Ready. The deployment won't report that the pod is ready until all of the liveness/readiness probe criteria are met. Keep running the **describe** and **get pod** commands
+`kubectl get pod $POD_NAME --watch`{{execute}} If you see the Ready status as 0/1: Because of the probe definitions and service startup time, it may take a few minutes before we see the pod as Ready. The deployment won't report that the pod is ready until all of the liveness/readiness probe criteria are met.
 
 Eventually you should see that the Pod's Ready status is 1/1. This means that 1 out of the 1 defined Containers is ready in the Pod
 ```
 NAME                                           READY   STATUS    RESTARTS   AGE
 myspringapp-0.5.0-deployment-d7d8d9978-q2c58   1/1     Running   0          4m43s
 ```
+
+Use `ctrl + c` to exit the watch
+
+## Interact with the deployed chart
+
+Using **kubectl**, get the running pod name
+
+`export POD_NAME=$(kubectl get pods --namespace default -l "AppName=myspringapp" -o jsonpath="{.items[0].metadata.name}")`{{execute}}
+
+Using **kubectl**, forward the pod's traffic on port 8181 to your machine's port 8181
+
+`kubectl --namespace default port-forward $POD_NAME 8181:8181 &`{{execute}}
+
+*You may need to press 'Enter' after this command to get back to the prompt*
+
+Using **curl**, call the service on port 8181 (the forwarded port)
+
+`curl -vvv http://127.0.0.1:8181/demo/demo1`{{execute}}
+
+Expect to see a successful response
+```
+< HTTP/1.1 200
+< Content-Type: text/plain;charset=UTF-8
+< Content-Length: 6
+< Date: Fri, 26 Jun 2020 23:30:59 GMT
+<
+Demo1
+```
+
+## Clean up
+
+Stop the port forward process
+
+`kill %1`{{execute}}
 
 ## Congrats!
 
