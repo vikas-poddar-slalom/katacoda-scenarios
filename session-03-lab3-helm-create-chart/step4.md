@@ -126,22 +126,39 @@ You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.ya
 
 ## Package and Install
 
-Package the chart using **helm package**
+Prior to packaging, because we made multiple changes to deployment.yaml, it would be nice to validate that our changes are correct and have the desired effect.
+
+Helm Lint will check the formatting of the yaml files and validate they are correct
+
+`helm lint myspringapp`{{execute}}
+
+Expect to see
+```
+==> Linting myspringapp
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+
+---
+
+Now that we know the formatting is good, we can package the chart using **helm package**
+
 `helm package myspringapp`{{execute}}
 
 Check that your chart was packaged correctly
+
 `ls -l`{{execute}}
+
 You should see a file called **myspringapp-0.3.0.tgz**
 
 ---
 
 Prior to upgrading, because we made multiple changes to deployment.yaml, it would be nice to validate that our changes are correct and have the desired effect.
 
-For this, we can leverage the **dry-run** and **debug** flags
+Helm Upgrade with **--dry-run --debug** will do a dry upgrade that will output what the state will be the upgrade is performed
 
 `helm upgrade myspringapp myspringapp-0.3.0.tgz --dry-run --debug`{{execute}}
-
-If the command returns output without any errors, then your template is valid in terms of formatting.
 
 Expect to see something like
 ```
