@@ -4,8 +4,6 @@
 - **If you're feeling stuck with `kubectl` or `helm` don't forget about the `-h` `--help` switch**
 - **The `-h` or `--help` switch can be used at any point in a command to see usage details for that context e.g. `helm repo add --help` versus `helm --help`**
 - **Since we're not specifying a Namespace, all commands and objects created are ran against the `default` Namespace**
-- **We have added a YAML highlighter to make it easier to read outputs**
-  - **You will recognize it's usage after a pipe, like so ` | yh`**
 
 Once you have Helm installed, you can add a chart repository. One popular starting location is the official Helm stable charts
 

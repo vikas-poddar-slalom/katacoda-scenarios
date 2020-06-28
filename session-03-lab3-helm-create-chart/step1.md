@@ -18,17 +18,19 @@ apiserver: Starting
 kubeconfig: Starting
 ```
 
-Give it a minute to start. Otherwise start the cluster
+Give it a minute to start and check the status again
 
-`minikube start`{{execute}}
-
-Once it is running, you should see 
+Once it is running, you should see
 ```
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 ```
+
+If you see any errors, run
+
+`minikube start`{{execute}}
 
 ## Install Helm 3
 
