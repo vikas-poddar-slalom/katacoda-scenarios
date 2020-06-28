@@ -35,7 +35,7 @@ Let's install the chart into our cluster. With this command we will install the 
 
 `helm install kubernetes-dashboard stable/kubernetes-dashboard`{{execute}}
 
-![Helm Install](/dallas-k8s-bootcamp/scenarios/session-03-lab1-helm-intro/assets/helm-install-chart.png)
+![Helm Install](helm-install-chart.png)
 
 ---
 

@@ -19,4 +19,4 @@ With this command, we are adding the repository at https://kubernetes-charts.sto
 
 Verify the repo is added correctly
 `helm repo list`{{execute}}
-![Helm List Repos](/dallas-k8s-bootcamp/scenarios/session-03-lab1-helm-intro/assets/repo-list.png)
+![Helm List Repos](repo-list.png)
