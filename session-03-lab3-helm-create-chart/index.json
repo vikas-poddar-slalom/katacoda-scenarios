@@ -40,6 +40,7 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
+    "uieditorpath": "/root/myspringapp",
     "showide": true
   },
   "backend": {
