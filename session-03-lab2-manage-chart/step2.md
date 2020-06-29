@@ -14,6 +14,8 @@ Check your chart is created correctly
 
 You should see a directory called **mychart**
 
+`helm tree ./mychart`{{execute}}
+
 ---
 
 Before we modify the chart, lets package and install your chart
