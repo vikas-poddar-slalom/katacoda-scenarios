@@ -11,24 +11,26 @@ Check the status of your cluster
 `minikube status`{{execute}}
 
 If you see
-```
+```shell
 host: Starting
 kubelet: Starting
 apiserver: Starting
 kubeconfig: Starting
 ```
 
-Give it a minute to start. Otherwise start the cluster
-
-`minikube start`{{execute}}
+Give it a minute to start and check the status again
 
 Once it is running, you should see
-```
+```shell
 host: Running
 kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 ```
+
+If you see any errors, run
+
+`minikube start`{{execute}}
 
 ## Install Helm 3
 
@@ -43,13 +45,9 @@ Check that Helm installed correctly
 `helm version`{{execute}}
 
 Expect to see
-```
+```shell
 Version:"v3.2.2"
 ```
-
-After installing helm, initialize your system to support helm by creating some pre-requisite directories. This only needs to be run once on your machine the first time helm is installed
-
-`helm init`{{execute}}
 
 ## Install kubectl
 
@@ -61,7 +59,7 @@ You can install it from Google Storage if it is not already installed. Check if 
 
 You should expect to see a response similar to this
 
-```
+```shell
 Client Version: version.Info{Major:"1", Minor:"17", GitVersion:"v1.17.3", GitCommit:"06ad960bfd03b39c8310aaf92d1e7c12ce618213", GitTreeState:"clean", BuildDate:"2020-02-11T18:14:22Z", GoVersion:"go1.13.6", Compiler:"gc", Platform:"linux/amd64"}
 ```
 

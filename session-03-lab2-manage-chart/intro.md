@@ -11,3 +11,7 @@ Helm charts are packaged directories that, at a minimum, must contain these file
 
 ## Packaging and Deployment
 Helm charts are packaged simply by zipping up files into a tarball (.tgz) file
+
+# Lab Content
+
+This lab will show you how to manage releases to your k8s cluster using Helm.

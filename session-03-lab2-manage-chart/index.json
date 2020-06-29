@@ -1,6 +1,6 @@
 {
-  "title": "Session 3 - Helm Charts Management",
-  "description": "Learning how to use Helm Charts to manage deployments to k8s",
+  "title": "Session 3 - Lab 2 - Helm Charts Management",
+  "description": "Managing releases using Helm",
   "difficulty": "Beginner",
   "time": "10-15 minutes",
   "details": {

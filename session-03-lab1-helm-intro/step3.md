@@ -57,21 +57,23 @@ Lets first clear the screen as it is getting cluttered. Use this command at anyt
 
 Check the status of kubernetes-dashboard using **kubectl** commands
 
-`kubectl get pods`{{execute}}
-
 `kubectl get deployments`{{execute}}
 
 `kubectl get services`{{execute}}
 
 Expect to see
 
-```
+```shell
 NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
 kubernetes             ClusterIP   10.96.0.1        <none>        443/TCP   11m
 kubernetes-dashboard   ClusterIP   10.103.142.206   <none>        443/TCP   2s
 ```
 
-## Uninstall kubernetes-dashboard from the cluster
+`kubectl get pods --watch`{{execute}}
+
+Once the pod is running use `ctrl+c` to exit out of the watch command.
+
+## Uninstall the chart from the cluster
 
 Uninstall the release
 
@@ -87,9 +89,9 @@ Verify the release is uninstalled
 
 Verify the kubernetes-dashboard components are deleted using **kubectl** commands
 
-`kubectl get pods`{{execute}}
+`kubectl get pods --watch`{{execute}}
 
-You may see a status of **Terminating**. This means the pod is being shutdown. Run the command again in a few seconds to see that the pod has been deleted.
+After the pod is deleted use `ctrl+c` to exit out of the watch command.
 
 `kubectl get deployments`{{execute}}
 
@@ -97,7 +99,7 @@ You may see a status of **Terminating**. This means the pod is being shutdown. R
 
 Expect to see
 
-```
+```shell
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   9m2s
 ```

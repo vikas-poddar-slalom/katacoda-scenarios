@@ -11,7 +11,7 @@ Check the status of your cluster
 `minikube status`{{execute}}
 
 If you see
-```
+```shell
 host: Starting
 kubelet: Starting
 apiserver: Starting
@@ -21,7 +21,7 @@ kubeconfig: Starting
 Give it a minute to start and check the status again
 
 Once it is running, you should see
-```
+```shell
 host: Running
 kubelet: Running
 apiserver: Running
