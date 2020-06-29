@@ -45,7 +45,7 @@
 
 You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.yaml`
 
-1. myspringapp/Chart.yaml
+1. myspringapp/Chart.yaml{{editor}}
 
   Defines a Chart for myspringapp with starting version 0.1.0
 
@@ -57,7 +57,7 @@ You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.ya
   version: 0.1.0
   ```
 
-1. myspringapp/values.yaml
+1. myspringapp/values.yaml{{editor}}
 
   Basic set of values for a Deployment
 
@@ -77,7 +77,7 @@ You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.ya
 
   We will run the dockerworkshopdallas/java:release Spring Boot Application available publicly in Dockerhub
 
-1. myspringapp/templates/deployment.yaml
+1. myspringapp/templates/deployment.yaml{{editor}}
 
   Templatized Kubernetes Deployment configuration.
 
@@ -117,7 +117,7 @@ You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.ya
               - containerPort:  {{ .Values.image.containerPort }}
   ```
 
-1. myspringapp/.helmignore
+1. myspringapp/.helmignore{{editor}}
 
   This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created.
 
