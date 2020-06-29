@@ -1,6 +1,6 @@
 # Create chart from template
 
-Helm comes pre-installed with a command to create a chart from a pre-configured template with the required files and directory structure.
+Helm comes pre-installed with a command to create a chart from a pre-configured nginx template with the required files and directory structure.
 
 Run the create command to create an empty chart called **mychart**
 
@@ -34,11 +34,32 @@ Now you can install your chart
 
 `helm install mychart mychart-0.1.0.tgz`{{execute}}
 
+Expect to see some output like
+```shell
+$ helm install mychart mychart-0.1.0.tgz
+NAME: mychart
+LAST DEPLOYED: Mon Jun 29 21:00:01 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mychart" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:80
+```
+
 ---
 
 Verify your chart installed
 
 `helm list`{{execute}}
+
+Expect to see
+```shell
+NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+mychart default         1               2020-06-29 21:00:01.667759937 +0000 UTC deployed        mychart-0.1.0   1.16.0
+```
 
 ## Interact with the deployed chart
 

@@ -1,8 +1,8 @@
 {
-  "title": "Session 3 - Create Helm Charts",
-  "description": "Learning how to use Helm Charts to manage deployments to k8s",
-  "difficulty": "Beginner",
-  "time": "10-15 minutes",
+  "title": "Session 3 - Lab 3 - Create Helm Chart",
+  "description": "Learning how to create Helm Charts from scratch",
+  "difficulty": "Adcanced",
+  "time": "15-20 minutes",
   "details": {
     "steps": [
       {

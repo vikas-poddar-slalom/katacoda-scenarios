@@ -2,8 +2,9 @@
 
 Let's get familiar with Helm CLI by checking out a few different commands
 
-To see a full list of available commands, run **help**
-`helm help`{{execute}}
+To see a full list of available commands, use the **help** flag
+
+`helm --help`{{execute}}
 
 All `helm` commands execute against the cluster you define in your context. For the purposes of this workshop, we will be executing all commands against the local minikube cluster.
 
@@ -42,6 +43,12 @@ Let's install the chart into our cluster. With this command we will install the 
 Verify the release is installed in the cluster
 
 `helm list`{{execute}}
+
+Expect to see
+```shell
+NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                        APP VERSION
+kubernetes-dashboard    default         1               2020-06-29 20:50:25.508041758 +0000 UTC deployed        kubernetes-dashboard-1.11.1     1.10.1
+```
 
 ---
 
@@ -84,6 +91,11 @@ Uninstall the release
 Verify the release is uninstalled
 
 `helm list`{{execute}}
+
+Expect to see an empty list
+```shell
+NAME    NAMESPACE       REVISION        UPDATED STATUS  CHART   APP VERSION
+```
 
 ---
 
