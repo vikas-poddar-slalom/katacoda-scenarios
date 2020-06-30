@@ -8,9 +8,11 @@ In this step, we will add a Service to the chart. Think of a service as a load b
 
   `cp ~/charts/values2.yaml myspringapp/values.yaml`{{execute}}
 
+  The `service.yaml` is a Kubernetes template and will be placed in the templates directory
+
   `cp ~/charts/service2.yaml myspringapp/templates/service.yaml`{{execute}}
 
-  Using `ls -lR myspringapp`{{execute}} we can see the structure of the directory
+  We can see the structure of the chart either via the editor, or by running `helm tree myspringapp`{{execute}}
 
 ## Let't take a look around and see what has changed
 

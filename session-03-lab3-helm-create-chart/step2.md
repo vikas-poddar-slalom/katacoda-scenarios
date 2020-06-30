@@ -4,7 +4,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
 1. Let's initialize an empty directory and setup our directory structure to house our chart files
 
-  `mkdir -P myspringapp/templates`{{execute}}
+  `mkdir -p myspringapp/templates`{{execute}}
 
 1. Copy the **myspringapp1** files from **~/** into your chart directory
 
@@ -21,6 +21,8 @@ In this step, we will create a chart from scratch without using a template or a 
   The `deployment.yaml` is a Kubernetes template and will be placed in the templates directory
 
   `cp ~/charts/deployment1.yaml myspringapp/templates/deployment.yaml`{{execute}}
+
+  We can see the structure of the chart either via the editor, or by running `helm tree myspringapp`{{execute}}
 
 ## Let't take a look around and see what this chart consists of
 
