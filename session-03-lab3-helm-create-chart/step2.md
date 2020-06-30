@@ -28,7 +28,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
 ### Chart.yaml
 
-  `myspringapp/Chart.yaml`{{open}}
+  `Chart.yaml`{{open}}
 
   Defines a Chart for myspringapp with starting version 0.1.0
 
