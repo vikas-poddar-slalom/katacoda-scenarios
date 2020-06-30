@@ -2,7 +2,7 @@
 
 In this step, we will add a Service to the chart. Think of a service as a load balancer; adding this will allow us to route traffic to our deployment
 
-1. Copy the **myspringapp2** files from **~/** into this empty directory
+1. Copy the **myspringapp2** files from **~/** into the chart directory
 
   `cp ~/charts/Chart2.yaml myspringapp/Chart.yaml`{{execute}}
 
@@ -12,7 +12,7 @@ In this step, we will add a Service to the chart. Think of a service as a load b
 
   `cp ~/charts/service2.yaml myspringapp/templates/service.yaml`{{execute}}
 
-  We can see the structure of the chart either via the editor, or by running `helm tree myspringapp`{{execute}}
+  We can see the structure of the chart either via the editor, or by running `tree -a myspringapp`{{execute}}
 
 ## Let't take a look around and see what has changed
 
@@ -42,9 +42,29 @@ In this step, we will add a Service to the chart. Think of a service as a load b
   - the use of both the `.Values` and `.Release` Helm objects
   - the use of the Helm `if` control to either toggle creation of this resource based on the value set in the values file
 
+## Render the template locally to see what will be created
+
+Before we package and deploy the chart, we can see what the final output of rendering the templates will look like
+
+`helm template ./myspringapp`{{execute}}
+
+Here you will see that although we were expecting 2 templates, service and deployment, we only see 1 being rendered
+
+This is because we are using an `if` control in our Service template and currently the values file has disabled the service
+
+## Modify the values to enable the service and render again
+
+Lets modify the `values.yaml` and set the value for `spec.enabled` to `true`
+
+Re-run the `template` command to render the template again
+
+`helm template ./myspringapp`{{execute}}
+
+And see that Helm is now rendering both the service and the deployment
+
 ## Package Chart
 
-Package the chart using **helm package**
+Now that the Service is enabled, package the chart using **helm package**
 
 `helm package myspringapp`{{execute}}
 
@@ -69,8 +89,6 @@ Verify your chart installed correctly
 ---
 
 And check the new Service component has been deployed
-
-`helm status myspringapp`{{execute}}
 
 `kubectl get services --namespace default -l "AppName=myspringapp"`{{execute}}
 

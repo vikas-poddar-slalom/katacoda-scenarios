@@ -2,7 +2,7 @@
 
 In this step we will harden our release by introducing a few rules around our deployment. We will do this by modifying the `values.yaml` to support our changes and adding a new set of configurations to the `deployment.yaml`
 
-1. Copy the **myspringapp3** files from **~/** into this empty directory
+1. Copy the **myspringapp3** files from **~/** into the chart directory
 
   `cp ~/charts/Chart3.yaml myspringapp/Chart.yaml`{{execute}}
 
@@ -10,7 +10,7 @@ In this step we will harden our release by introducing a few rules around our de
 
   `cp ~/charts/deployment3.yaml myspringapp/templates/deployment.yaml`{{execute}}
 
-  We can see the structure of the chart either via the editor, or by running `helm tree myspringapp`{{execute}}
+  We can see the structure of the chart either via the editor, or by running `tree -a myspringapp`{{execute}}
 
 ## Let't take a look around and see what has changed
 

@@ -4,10 +4,6 @@ labels:
   AppName: myspringapp
   AppVersion: "1.0"
 
-rollingUpdate:
-  ltsurge: 25%
-  maxUnavailable: 25%
-
 image:
   repository: dockerworkshopdallas/java
   tag: release
