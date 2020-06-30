@@ -12,15 +12,26 @@ Run the create command to create an empty chart called **mychart**
 
 Check your chart is created correctly
 
-`ls -l`{{execute}}
+`tree ./mychart`{{execute}}
 
-You should see a directory called **mychart**. We will target this directory throughout the remainder of this lab
+You should see a directory called **mychart** with subdirectories as below
+```bash
+$ tree mychart/
+mychart/
+├── charts
+├── Chart.yaml
+├── templates
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── ingress.yaml
+│   ├── NOTES.txt
+│   └── service.yaml
+└── values.yaml
 
----
+2 directories, 7 files
+```
 
-To gain a view of your Helm chart structure, use
-
-`helm tree ./mychart`{{execute}}
+We will target this directory throughout the remainder of this lab
 
 ---
 
@@ -43,7 +54,7 @@ Now you can install your chart
 `helm install mychart mychart-0.1.0.tgz`{{execute}}
 
 Expect to see some output like
-```shell
+```bash
 $ helm install mychart mychart-0.1.0.tgz
 NAME: mychart
 LAST DEPLOYED: Mon Jun 29 21:00:01 2020
