@@ -22,7 +22,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
   `cp ~/charts/deployment1.yaml myspringapp/templates/deployment.yaml`{{execute}}
 
-  We can see the structure of the chart either via the editor, or by running `tree myspringapp`{{execute}}
+  We can see the structure of the chart either via the editor, or by running `tree -a myspringapp`{{execute}}
 
 ## Let't take a look around and see what this chart consists of
 
