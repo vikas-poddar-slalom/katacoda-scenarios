@@ -46,7 +46,7 @@ In this step we will harden our release by introducing a few rules around our de
 
   With these changes, we have improved the overall reliability of our deployment; now, a Pod will only be scheduled to start on nodes that can support its resource requirements and the cluster will validate readiness and liveness of the underlying service before directing traffic to the Pod. If a Pod fails to meet the probe criteria, it will automatically be removed and replaced with another pod.
 
-## Package and Install
+## Test the Chart prior to packaging
 
 Prior to packaging, because we made multiple changes to the deployment.yaml, it would be nice to validate that our changes are correct and have the desired effect.
 
@@ -62,7 +62,7 @@ Expect to see
 1 chart(s) linted, 0 chart(s) failed
 ```
 
----
+## Package Chart
 
 Now that we know the formatting is good, we can package the chart using **helm package**
 
@@ -74,7 +74,7 @@ Check that your chart was packaged correctly
 
 You should see a file called **myspringapp-0.3.0.tgz**
 
----
+## Test the Chart prior to deploying
 
 Prior to upgrading, because we made multiple changes to deployment.yaml, it would be nice to validate that our changes are correct and have the desired effect.
 
@@ -107,7 +107,7 @@ image:
 
 You can view the output to ensure it contains your desired changes (resources, livenessProbe, readinessProbe) on the `Deployment`.
 
----
+## Upgrade Chart
 
 Lets also get a view of the deployment configuration prior to upgrading the release
 
@@ -132,7 +132,7 @@ Now you can upgrade your chart
 
 `helm upgrade myspringapp myspringapp-0.3.0.tgz`{{execute}}
 
----
+## Verify the Upgrade
 
 Verify your chart installed
 
@@ -165,7 +165,7 @@ As you can see, it now contains our resource and liveness/readiness configuratio
     Mounts:       <none>
 ```
 
-## Verify Release
+---
 
 Using `kubectl` commands, we can verify the release was successful
 
@@ -173,7 +173,7 @@ Use the following commands to see the events happening on the pod and to see its
 
 `export POD_NAME=$(kubectl get pods --namespace default -l "AppName=myspringapp" -o jsonpath="{.items[0].metadata.name}")`{{execute}}`
 
-`kubectl describe pod $POD_NAME`{{execute}} You may see some 'failures' but that is likely due to the timing of our probes and the startup time of the service.
+`kubectl describe pod $POD_NAME`{{execute}} You may see some 'failures' but that is due to the timing of our probes and the startup time of the service.
 
 `kubectl get pod $POD_NAME --watch`{{execute}}
 
@@ -219,7 +219,7 @@ Stop the port forward process
 
 `kill %1`{{execute}}
 
-## Congrats!
+# Congrats!
 
 Congrats, you have now successfully built your own chart from scratch, updated it, and improved it.
 

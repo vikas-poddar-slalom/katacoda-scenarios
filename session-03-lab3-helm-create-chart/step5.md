@@ -2,15 +2,21 @@
 
 As we did in Lab 2, in this step we will perform a rollback on our Spring application
 
-1. First lets see the list of available versions for release name **myspringapp**
+## View History of Release
 
-  `helm history myspringapp`{{execute}}
+First lets see the list of available versions for release name **myspringapp**
 
-1. Rollback to the previous release
+`helm history myspringapp`{{execute}}
 
-  `helm rollback myspringapp 2`{{execute}}
+## Downgrade Release
 
-1. Verify your chart was downgraded to version **0.2.0**
+Rollback to the previous release
+
+`helm rollback myspringapp 2`{{execute}}
+
+## Verify Rollback
+
+1.  Verify your chart was downgraded to version **0.2.0**
 
   `helm list`{{execute}}
 
@@ -31,6 +37,6 @@ As we did in Lab 2, in this step we will perform a rollback on our Spring applic
     Mounts:       <none>
   ```
 
-## Congrats!
+# Congrats!
 
 Congrats, you have now successfully built your own chart from scratch, updated it, improved it, and performed a rollback on it.

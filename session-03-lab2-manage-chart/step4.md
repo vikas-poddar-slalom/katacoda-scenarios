@@ -2,7 +2,9 @@
 
 In this section, we will see how to rollback a Helm chart to a previous version
 
-1. First lets see the list of available versions for release name **mychart**
+## View History of Release
+
+  First lets see the list of available versions for release name **mychart**
 
   `helm history mychart`{{execute}}
 
@@ -13,7 +15,9 @@ In this section, we will see how to rollback a Helm chart to a previous version
   2               Mon Jun 22 16:46:54 2020        deployed        mychart-0.2.0   1.16.0          Upgrade complete
   ```
 
-1. Lets downgrade the chart to version **0.1.0**; Version **0.1.0** was applied as **REVISION 1** so we will rollback to that
+## Downgrade the release
+
+  Lets downgrade the chart to version **0.1.0**; Version **0.1.0** was applied as **REVISION 1** so we will rollback to that
 
   `helm rollback mychart 1`{{execute}}
 
@@ -22,7 +26,9 @@ In this section, we will see how to rollback a Helm chart to a previous version
   Rollback was a success! Happy Helming!
   ```
 
-1. Verify your chart was downgraded to version **0.1.0**
+## Verify the Rollback
+
+  Verify your chart was downgraded to version **0.1.0**
 
   `helm list`{{execute}}
 

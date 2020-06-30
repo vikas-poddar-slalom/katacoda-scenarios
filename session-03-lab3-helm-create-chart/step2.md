@@ -69,7 +69,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
   This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created. For anyone familiar with Git, this will loo very familiar as it follows the same patterns as a `.gitignore` file
 
-## Package and Install
+## Package Chart
 
 Package the chart using **helm package**
 
@@ -81,7 +81,7 @@ Check that your chart was packaged correctly
 
 You should see a file called **myspringapp-0.1.0.tgz**
 
----
+## Install Chart
 
 Now you can install your chart
 
@@ -98,7 +98,7 @@ REVISION: 1
 TEST SUITE: None
 ```
 
----
+## Verify the Install
 
 Verify your chart installed
 
@@ -118,7 +118,7 @@ Check that the deployment and pod was created
 
 `kubectl get pods`{{execute}}
 
-## Congrats!
+# Congrats!
 
 Congrats, you have created and installed your first chart
 

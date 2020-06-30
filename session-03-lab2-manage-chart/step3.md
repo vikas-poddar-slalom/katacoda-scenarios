@@ -83,7 +83,7 @@ Now that you have created your own chart called **mychart** from a template, you
     kubectl --namespace default port-forward $POD_NAME 8080:80
   ```
 
-  ---
+## Verify the Install
 
   Verify your chart upgraded
 

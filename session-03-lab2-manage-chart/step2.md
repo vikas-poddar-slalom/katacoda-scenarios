@@ -33,7 +33,7 @@ mychart/
 
 We will target this directory throughout the remainder of this lab
 
----
+## Package Chart
 
 Lets package and install your chart
 
@@ -47,7 +47,7 @@ Check that your chart was packaged correctly
 
 You should see a file called **mychart-0.1.0.tgz**
 
----
+## Install Chart
 
 Now you can install your chart
 
@@ -68,7 +68,7 @@ NOTES:
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
 
----
+## Verify the Install
 
 Verify your chart installed
 
@@ -109,7 +109,7 @@ Stop the port forward process
 [1]+  Terminated              kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
 
-## Congrats!
+# Congrats!
 
 Congrats, you have created and installed your first chart
 

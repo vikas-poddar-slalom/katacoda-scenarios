@@ -42,7 +42,7 @@ In this step, we will add a Service to the chart. Think of a service as a load b
   - the use of both the `.Values` and `.Release` Helm objects
   - the use of the Helm `if` control to either toggle creation of this resource based on the value set in the values file
 
-## Package and Install
+## Package Chart
 
 Package the chart using **helm package**
 
@@ -54,13 +54,13 @@ Check that your chart was packaged correctly
 
 You should see a file called **myspringapp-0.2.0.tgz**
 
----
+## Upgrade Release
 
 Now you can upgrade your chart
 
 `helm upgrade myspringapp myspringapp-0.2.0.tgz`{{execute}}
 
----
+## Verify the Upgrade
 
 Verify your chart installed correctly
 
@@ -109,7 +109,7 @@ Stop the port forward process
 
 `kill %1`{{execute}}
 
-## Congrats!
+# Congrats!
 
 Congrats, you have added a Service component to your chart and upgraded it
 
