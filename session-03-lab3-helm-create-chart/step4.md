@@ -18,13 +18,13 @@ In this step we will harden our release by introducing a few rules around our de
 
 ### Chart.yaml
 
-  myspringapp/Chart.yaml{{open}}
+  `myspringapp/Chart.yaml`{{open}}
 
   As you can see, the version has again been changed to 0.3.0
 
 ### values.yaml
 
-  myspringapp/values.yaml{{open}}
+  `myspringapp/values.yaml`{{open}}
 
   A few more values have been added to improve the Deployment:
   - The **resources** section defines resource requests that the deployment makes when pods are being started on the cluster. The cluster will try to schedule pods on nodes where it can fulfill the CPU and Memory requirements defined here. For example, this deployment is specifying that the pod can start with .1 cores and 128Mb of RAM, but can consume up to .2 cores and 256Mb of RAM, so the control plane in the cluster will only spin up pods of this deployment on nodes where it can fulfill those resource requirements.
@@ -38,7 +38,7 @@ In this step we will harden our release by introducing a few rules around our de
 
 ### deployment.yaml
 
-  myspringapp/templates/deployment.yaml{{open}}
+  `myspringapp/templates/deployment.yaml`{{open}}
 
   As you look at this file, take a look at these changes:
   - In the `containers` section, `resources`, `livenessProbe`, `readinessProbe` have been added

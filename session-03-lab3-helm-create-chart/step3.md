@@ -20,21 +20,21 @@ In this step, we will add a Service to the chart. Think of a service as a load b
 
 ### Chart.yaml
 
-  myspringapp/Chart.yaml{{open}}
+  `myspringapp/Chart.yaml`{{open}}
 
   As you look at this file, take a look at these changes:
   - version number has been bumped to 0.2.0
 
 ### values.yaml
 
-  myspringapp/values.yaml{{open}}
+  `myspringapp/values.yaml`{{open}}
 
   As you look at this file, take a look at these changes:
   - The `spec` block of values have been added to support the Service
 
 ### service.yaml
 
-  myspringapp/templates/service.yaml{{open}}
+  `myspringapp/templates/service.yaml`{{open}}
 
   As you look at this file, take a look at these things:
   - the use of the `{{}}` directives
