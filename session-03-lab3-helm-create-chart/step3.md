@@ -12,61 +12,31 @@
 
 ## Let't take a look around and see what has changed
 
-You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.yaml`
+**You may need to close the file and re-open it to see the changes**
 
-1. myspringapp/Chart.yaml
+### Chart.yaml
 
-  The version has been changed to 0.2.0
+  myspringapp/Chart.yaml{{open}}
 
-  ```yaml
-  apiVersion: v1
-  appVersion: "1.0"
-  description: A Helm chart for myspringapp
-  name: myspringapp
-  version: 0.2.0
-  ```
+  As you look at this file, take a look at these changes:
+  - version number has been bumped to 0.2.0
 
-1. myspringapp/values.yaml
+### values.yaml
 
-  A few more values have been added to support the Service
+  myspringapp/values.yaml{{open}}
 
-  ```yaml
-  spec:
-    type: ClusterIP
-    port: 8000
-    targetPort: 8181
-  ```
+  As you look at this file, take a look at these changes:
+  - The `spec` block of values have been added to support the Service
 
-1. myspringapp/templates/service.yaml
+### service.yaml
 
-  Templatized Kubernetes Service configuration.
+  myspringapp/templates/service.yaml{{open}}
 
-  The *{{ }}* are interpolated with the definitions in the values.yaml and Chart.yaml
-
-  **.Chart** refers to anything defined in the Chart.yaml and **.Values** refers to anything defined in the values.yaml
-
-  Using this templating format, a single chart can be applied to any environment simply by providing a different set of values in the values.yaml or a different values file.
-
-  ```yaml
-  kind: Service
-  apiVersion: v1
-  metadata:
-    name: {{quote .Values.labels.AppName }}
-    labels:
-      service: {{quote .Values.labels.AppName }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/managed-by: {{ .Release.Service }}
-      AppName: {{quote .Values.labels.AppName }}
-      AppVersion: {{quote .Values.labels.AppVersion }}
-  spec:
-    selector:
-      AppName: {{quote .Values.labels.AppName }}
-    ports:
-      - port: {{ .Values.spec.port }}
-        targetPort: {{ .Values.spec.targetPort }}
-        protocol: TCP
-        name: http
-  ```
+  As you look at this file, take a look at these things:
+  - the use of the `{{}}` directives
+  - the use of the Helm `quote` function
+  - the use of both the `.Values` and `.Release` Helm objects
+  - the use of the Helm `if` control to either toggle creation of this resource based on the value set in the values file
 
 ## Package and Install
 
@@ -88,7 +58,7 @@ Now you can upgrade your chart
 
 ---
 
-Verify your chart installed
+Verify your chart installed correctly
 
 `helm list`{{execute}}
 
@@ -105,17 +75,17 @@ Using this command, you can also quickly verify the status of all components of 
 
 ## Interact with the deployed chart
 
-Using **kubectl**, get the running pod name
+Using `kubectl`, get the running pod name
 
 `export POD_NAME=$(kubectl get pods --namespace default -l "AppName=myspringapp" -o jsonpath="{.items[0].metadata.name}")`{{execute}}
 
-Using **kubectl**, forward the pod's traffic on port 8181 to your machine's port 8181
+Using `kubectl`, forward the pod's traffic on port 8181 to your machine's port 8181
 
 `kubectl --namespace default port-forward $POD_NAME 8181:8181 &`{{execute}}
 
 *You may need to press 'Enter' after this command to get back to the prompt*
 
-Using **curl**, call the service on port 8181 (the forwarded port)
+Using `curl`, call the service on port 8181 (the forwarded port)
 
 `curl -vvv http://127.0.0.1:8181/demo/demo1`{{execute}}
 

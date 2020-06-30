@@ -2,13 +2,11 @@
 
 1. Let's initialize an empty directory and setup our directory structure to house our chart files
 
-  `mkdir myspringapp`{{execute}}
-
-  `mkdir myspringapp/templates`{{execute}}
-
-  Using `ls -lR myspringapp`{{execute}} we can see the structure of the directory
+  `mkdir -P myspringapp/templates`{{execute}}
 
 1. Copy the **myspringapp1** files from **~/** into your chart directory
+
+  As you are copying these, notice how the directory is being changed in the editor
 
   These 3 files will go to the root of the chart directory
 
@@ -18,133 +16,55 @@
 
   `cp ~/charts/values1.yaml myspringapp/values.yaml`{{execute}}
 
-  The deployment.yaml is a Kubernetes template and will be placed in the templates directory
+  The `deployment.yaml` is a Kubernetes template and will be placed in the templates directory
 
   `cp ~/charts/deployment1.yaml myspringapp/templates/deployment.yaml`{{execute}}
 
-  Using `ls -alR myspringapp`{{execute}} we can see the structure of the directory
-  ```
-  $ ls -alR myspringapp
-  myspringapp:
-  total 24
-  drwxr-xr-x  3 root root 4096 Jun 28 15:17 .
-  drwx------ 15 root root 4096 Jun 28 15:17 ..
-  -rw-r--r--  1 root root  108 Jun 28 15:17 Chart.yaml
-  -rw-r--r--  1 root root  342 Jun 28 15:17 .helmignore
-  drwxr-xr-x  2 root root 4096 Jun 28 15:18 templates
-  -rw-r--r--  1 root root  180 Jun 28 15:17 values.yaml
-
-  myspringapp/templates:
-  total 12
-  drwxr-xr-x 2 root root 4096 Jun 28 15:18 .
-  drwxr-xr-x 3 root root 4096 Jun 28 15:17 ..
-  -rw-r--r-- 1 root root 1054 Jun 28 15:18 deployment.yaml
-  ```
-
 ## Let't take a look around and see what this chart consists of
 
-You can view the contents of any file using `cat` e.g. `cat myspringapp/Chart.yaml`
+### Chart.yaml
 
-1. myspringapp/Chart.yaml{{editor}}
+  myspringapp/Chart.yaml{{open}}
 
   Defines a Chart for myspringapp with starting version 0.1.0
 
-  ```yaml
-  apiVersion: v1
-  appVersion: "1.0"
-  description: A Helm chart for myspringapp
-  name: myspringapp
-  version: 0.1.0
-  ```
+  All of the values defined in this file will become available to the template using the Helm `.Chart` object
 
-1. myspringapp/values.yaml{{editor}}
+### values.yaml
 
-  Basic set of values for a Deployment
+  myspringapp/values.yaml{{open}}
 
-  ```yaml
-  replicaCount: 1
+  Defines a basic set of values for the chart which will be used by the deployment configuration.
 
-  labels:
-    AppName: myspringapp
-    AppVersion: "1.0"
+  All of the values defined in this file will become available to the template using the Helm `.Values` object
 
-  image:
-    repository: dockerworkshopdallas/java
-    tag: release
-    pullPolicy: IfNotPresent
-    containerPort: 8181
-  ```
+  As you look at this file, take a look at these things:
+  - The docker image is `dockerworkshopdallas/java:release` which is a Dockerized Spring Boot Application available publicly in Docker Hub. This will be the image that is used by the deployment.
+  - Container port is 8181; thats the port the service listens on
 
-  We will run the dockerworkshopdallas/java:release Spring Boot Application available publicly in Dockerhub
+### deployment.yaml
 
-1. myspringapp/templates/deployment.yaml{{editor}}
+  myspringapp/templates/deployment.yaml{{open}}
 
   Templatized Kubernetes Deployment configuration.
 
-  The *{{ }}* are interpolated with the definitions in the values.yaml and Chart.yaml
+  The `{{ }}` are interpolated with the definitions in the values.yaml and Chart.yaml
 
-  **.Chart** refers to anything defined in the Chart.yaml and **.Values** refers to anything defined in the values.yaml
+  `.Chart` refers to anything defined in the `Chart.yaml` and `.Values` refers to anything defined in the `values.yaml`
 
   Using this templating format, a single chart can be applied to any environment simply by providing a different set of values in the values.yaml or a different values file.
 
-  ```yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: {{ .Chart.Name }}-{{ .Chart.Version }}-deployment
-    labels:
-      run: {{quote .Values.labels.AppName }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/managed-by: {{ .Release.Service }}
-      AppName: {{quote .Values.labels.AppName }}
-      AppVersion: {{quote .Values.labels.AppVersion }}
-  spec:
-    selector:
-      matchLabels:
-        run: {{quote .Values.labels.AppName }}
-    replicas: {{ .Values.replicaCount }}
-    template:
-      metadata:
-        labels:
-          run: {{quote .Values.labels.AppName }}
-          AppName: {{quote .Values.labels.AppName }}
-          container: app
-      spec:
-        containers:
-          - name: {{quote .Values.labels.AppName }}
-            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-            ports:
-              - containerPort:  {{ .Values.image.containerPort }}
-  ```
+  As you look at this file, take a look at these things:
+  - the use of the `{{}}` directives
+  - the use of the Helm `quote` function
+  - the use of the `.Values`, `.Chart`, and `.Release` Helm objects
+  - the use of the Helm `if` control to either toggle creation of this resource based on the value set in the values file
 
-1. myspringapp/.helmignore{{editor}}
+### .helmignore
+
+  myspringapp/.helmignore{{open}}
 
   This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created.
-
-  ```yaml
-  # Patterns to ignore when building packages.
-  # This supports shell glob matching, relative path matching, and
-  # negation (prefixed with !). Only one pattern per line.
-  .DS_Store
-  # Common VCS dirs
-  .git/
-  .gitignore
-  .bzr/
-  .bzrignore
-  .hg/
-  .hgignore
-  .svn/
-  # Common backup files
-  *.swp
-  *.bak
-  *.tmp
-  *~
-  # Various IDEs
-  .project
-  .idea/
-  *.tmproj
-  .vscode/
-  ```
 
 ## Package and Install
 
@@ -164,11 +84,28 @@ Now you can install your chart
 
 `helm install myspringapp myspringapp-0.1.0.tgz`{{execute}}
 
+Expect to see
+
+```shell
+NAME: myspringapp
+LAST DEPLOYED: Mon Jun 29 22:19:12 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+```
+
 ---
 
 Verify your chart installed
 
 `helm list`{{execute}}
+
+Expect to see
+```shell
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+myspringapp     default         1               2020-06-29 22:19:12.316658601 +0000 UTC deployed        myspringapp-0.1.1.0
+```
 
 ---
 

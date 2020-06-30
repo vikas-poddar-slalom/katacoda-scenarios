@@ -40,8 +40,7 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "/root/myspringapp",
-    "showide": true
+    "uieditorpath": "/root/myspringapp"
   },
   "backend": {
     "imageid": "minikube-running"
