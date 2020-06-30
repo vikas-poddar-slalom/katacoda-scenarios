@@ -1,4 +1,4 @@
-## Helm CLI
+# Helm CLI
 
 Let's get familiar with Helm CLI by checking out a few different commands
 
@@ -16,11 +16,11 @@ Common commands include
 * helm install:   upload the chart to Kubernetes
 * helm list:      list releases of charts
 
-### Run kubernetes-dashboard in Kubernetes cluster
+## Run mysql in Kubernetes cluster
 
-We will search the official Helm repository for a kubernetes-dashboard chart and install the chart into the locally running Kubernetes cluster
+We will search the official Helm repository for a mysql chart and install the chart into the locally running Kubernetes cluster
 
-Lets find a kubernetes-dashboard chart.
+Lets find a mysql chart.
 
 `helm search repo stable`{{execute}}
 
@@ -28,13 +28,13 @@ This command returns a comprehensive list of all of the charts available in this
 
 Lets filter the list to only include the type of chart we are interested in
 
-`helm search repo stable/kubernetes-dashboard`{{execute}}
+`helm search repo stable/mysql`{{execute}}
 
 ---
 
-Let's install the chart into our cluster. With this command we will install the **stable/kubernetes-dashboard** chart with a release name of **kubernetes-dashboard**
+Let's install the chart into our cluster. With this command we will install the **stable/mysql** chart with a release name of **mysql**
 
-`helm install kubernetes-dashboard stable/kubernetes-dashboard`{{execute}}
+`helm install mysql stable/mysql`{{execute}}
 
 ![Helm Install](helm-install-chart.png)
 
@@ -45,10 +45,8 @@ Verify the release is installed in the cluster
 `helm list`{{execute}}
 
 Expect to see
-```shell
-NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                        APP VERSION
-kubernetes-dashboard    default         1               2020-06-29 20:50:25.508041758 +0000 UTC deployed        kubernetes-dashboard-1.11.1     1.10.1
-```
+
+![Helm List](helm-list.png)
 
 ---
 
@@ -58,11 +56,25 @@ Lets first clear the screen as it is getting cluttered. Use this command at anyt
 
 `clear`{{execute}}
 
-`helm status kubernetes-dashboard`{{execute}}
+`helm status mysql`{{execute}}
+
+Expect to see
+```yaml
+LAST DEPLOYED: Tue Jun 30 03:24:50 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+MySQL can be accessed via port 3306 on the following DNS name from within your cluster:
+mysql.default.svc.cluster.local
+.
+.
+.
+```
 
 ---
 
-Check the status of kubernetes-dashboard using **kubectl** commands
+Check the status of the release using `kubectl` commands
 
 `kubectl get deployments`{{execute}}
 
@@ -71,14 +83,14 @@ Check the status of kubernetes-dashboard using **kubectl** commands
 Expect to see
 
 ```shell
-NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-kubernetes             ClusterIP   10.96.0.1        <none>        443/TCP   11m
-kubernetes-dashboard   ClusterIP   10.103.142.206   <none>        443/TCP   2s
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    11m
+mysql        ClusterIP   10.98.102.99   <none>        3306/TCP   4m1s
 ```
 
 `kubectl get pods --watch`{{execute}}
 
-Once the pod is running use `ctrl+c` to exit out of the watch command.
+Once the pod has a status of Running use `ctrl+c` to exit out of the watch command.
 
 ## Uninstall the chart from the cluster
 

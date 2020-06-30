@@ -9,7 +9,9 @@ Now that you have created your own chart called **mychart** from a template, you
 
   `cp /usr/local/bin/Chart.yaml mychart/.`{{execute}}
 
-  The changed version has a new description and upgraded version number
+  `cat mychart/Chart.yaml`{{execute}} to print the contents of the file to the terminal
+
+  The changed version has an upgraded version number
   ```yaml
   apiVersion: v2
   name: mychart

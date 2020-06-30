@@ -1,8 +1,8 @@
 {
   "title": "Session 3 - Lab 3 - Create Helm Chart",
   "description": "Learning how to create Helm Charts from scratch",
-  "difficulty": "Adcanced",
-  "time": "15-20 minutes",
+  "difficulty": "Advanced",
+  "time": "25-30 minutes",
   "details": {
     "steps": [
       {

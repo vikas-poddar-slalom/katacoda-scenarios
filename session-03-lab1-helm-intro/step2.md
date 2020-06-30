@@ -1,4 +1,4 @@
-## Initialize a Helm Repo
+# Initialize a Helm Repo
 
 **Note: Since we're not specifying a Namespace, all commands and objects created are ran against the `default` Namespace**
 
@@ -12,7 +12,10 @@ A chart repository is a server that hosts a collection of charts published by ot
 
 Before we can install a chart, we need to first add a repository to our Helm context
 
-`helm repo list`{{execute}} will show an empty list
+`helm repo list`{{execute}} will show an error because no repos have been added
+```shell
+Error: no repositories to show
+```
 
 ---
 

@@ -2,25 +2,31 @@
 
 Helm comes pre-installed with a command to create a chart from a pre-configured nginx template with the required files and directory structure.
 
+In this section, we will use this template to explore creating, packaging, and installing a chart
+
+## Create chart
+
 Run the create command to create an empty chart called **mychart**
 
 `helm create mychart`{{execute}}
-
----
 
 Check your chart is created correctly
 
 `ls -l`{{execute}}
 
-You should see a directory called **mychart**
+You should see a directory called **mychart**. We will target this directory throughout the remainder of this lab
+
+---
+
+To gain a view of your Helm chart structure, use
 
 `helm tree ./mychart`{{execute}}
 
 ---
 
-Before we modify the chart, lets package and install your chart
+Lets package and install your chart
 
-Package the chart using **helm package**
+Package the chart using
 
 `helm package ./mychart`{{execute}}
 
@@ -86,6 +92,11 @@ Using **curl**, call the service on port 8080 (the forwarded port)
 Stop the port forward process
 
 `kill %1`{{execute}}
+
+*Press 'Enter' after this command*. Expect to see an output like
+```bash
+[1]+  Terminated              kubectl --namespace default port-forward $POD_NAME 8080:80
+```
 
 ## Congrats!
 

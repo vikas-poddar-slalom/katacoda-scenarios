@@ -6,7 +6,7 @@
 
 1. Copy the **myspringapp1** files from **~/** into your chart directory
 
-  As you are copying these, notice how the directory is being changed in the editor
+  As you are copying these, notice how the directory is changing in the editor above
 
   These 3 files will go to the root of the chart directory
 
@@ -48,23 +48,22 @@
 
   Templatized Kubernetes Deployment configuration.
 
-  The `{{ }}` are interpolated with the definitions in the values.yaml and Chart.yaml
+  The `{{ }}` directives are interpolated with the definitions in the values.yaml, Chart.yaml, and any overridden values
 
   `.Chart` refers to anything defined in the `Chart.yaml` and `.Values` refers to anything defined in the `values.yaml`
 
   Using this templating format, a single chart can be applied to any environment simply by providing a different set of values in the values.yaml or a different values file.
 
   As you look at this file, take a look at these things:
-  - the use of the `{{}}` directives
+  - the use of the `{{ }}` directives
   - the use of the Helm `quote` function
   - the use of the `.Values`, `.Chart`, and `.Release` Helm objects
-  - the use of the Helm `if` control to either toggle creation of this resource based on the value set in the values file
 
 ### .helmignore
 
   myspringapp/.helmignore{{open}}
 
-  This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created.
+  This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created. For anyone familiar with Git, this will loo very familiar as it follows the same patterns as a `.gitignore` file
 
 ## Package and Install
 
