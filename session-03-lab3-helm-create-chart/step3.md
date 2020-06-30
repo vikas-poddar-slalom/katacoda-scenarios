@@ -1,5 +1,7 @@
 # Add a Service
 
+In this step, we will add a Service to the chart. Think of a service as a load balancer; adding this will allow us to route traffic to our deployment
+
 1. Copy the **myspringapp2** files from **~/** into this empty directory
 
   `cp ~/charts/Chart2.yaml myspringapp/Chart.yaml`{{execute}}

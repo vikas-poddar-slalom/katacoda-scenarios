@@ -1,5 +1,7 @@
 # Rollback the Helm Release
 
+As we did in Lab 2, in this step we will perform a rollback on our Spring application
+
 1. First lets see the list of available versions for release name **myspringapp**
 
   `helm history myspringapp`{{execute}}
@@ -19,7 +21,7 @@
   `kubectl describe deployment $DEPLOYMENT_NAME`{{execute}}
 
   See that our resources, livenessProbe, and readinessProbe are removed and the Container definition is reset to the state from Step 2 where we created release version **0.2.0**
-  ```
+  ```yaml
   Containers:
    myspringapp:
     Image:        dockerworkshopdallas/java:release

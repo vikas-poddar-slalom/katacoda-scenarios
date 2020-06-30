@@ -1,5 +1,7 @@
 # Harden the Release
 
+In this step we will harden our release by introducing a few rules around our deployment. We will do this by modifying the `values.yaml` to support our changes and adding a new set of configurations to the `deployment.yaml`
+
 1. Copy the **myspringapp3** files from **~/** into this empty directory
 
   `cp ~/charts/Chart3.yaml myspringapp/Chart.yaml`{{execute}}

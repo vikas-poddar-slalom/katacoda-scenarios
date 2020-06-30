@@ -1,5 +1,7 @@
 # Create chart from scratch
 
+In this step, we will create a chart from scratch without using a template or a jumping off point
+
 1. Let's initialize an empty directory and setup our directory structure to house our chart files
 
   `mkdir -P myspringapp/templates`{{execute}}
