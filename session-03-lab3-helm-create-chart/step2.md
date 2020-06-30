@@ -36,7 +36,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
 ### values.yaml
 
-  `myspringapp/values.yaml`{{open}}
+  `values.yaml`{{open}}
 
   Defines a basic set of values for the chart which will be used by the deployment configuration.
 
@@ -48,7 +48,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
 ### deployment.yaml
 
-  `myspringapp/templates/deployment.yaml`{{open}}
+  `templates/deployment.yaml`{{open}}
 
   Templatized Kubernetes Deployment configuration.
 
@@ -65,7 +65,7 @@ In this step, we will create a chart from scratch without using a template or a 
 
 ### .helmignore
 
-  `myspringapp/.helmignore`{{open}}
+  `.helmignore`{{open}}
 
   This file defines the files or directories that should be ignored by Helm when packaging up the chart using **helm package**. This file is not required but is a nice to have to ensure a clean helm package is created. For anyone familiar with Git, this will loo very familiar as it follows the same patterns as a `.gitignore` file
 
