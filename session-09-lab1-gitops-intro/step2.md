@@ -53,6 +53,7 @@ Wait for Flux to start
 Expect to see a successful roll out
 
 ```
-$ kubectl -n flux rollout status deployment/flux --watch
+$ kubectl -n flux rollout status deployment/flux
+Waiting for deployment "flux" rollout to finish: 0 of 1 updated replicas are available...
 deployment "flux" successfully rolled out
 ```

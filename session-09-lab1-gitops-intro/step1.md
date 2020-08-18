@@ -23,6 +23,12 @@ password: something secure that you will remember
 
 In order to control the operation of your cluster using GitOps, you'll need to have a control repository in which the state of your cluster can be defined. For this tutorial, we will use the code in the Flux Get Started repository. `https://github.com/fluxcd/flux-get-started` is already set up with all the files you'll need to follow along. Fork it to your GitHub account.
 
+To Fork the repository:
+
+1. Make sure you are logged into your Github Account at `https://github.com/firstname-lastname-slalom`
+1. Open `https://github.com/fluxcd/flux-get-started` in your browser
+1. Click the ![Fork Icon](repo-fork.png) icon
+
 ### 3. Start the minikube cluster
 
 Check the status of your cluster
