@@ -1,12 +1,6 @@
-# What is Helm?
-Helm is a Package Manager for Kubernetes
-
-# What is a Package Manager
-Helm helps you manage Kubernetes applications – Helm charts help you define, install, and upgrade even the most complex Kubernetes application.
-Charts are easy to create, version, share, and publish – so start using Helm and stop the copy-and-paste.
-
-As summarized by Matt Farina, a package manager is tooling that enables someone who has knowledge of an application and a platform to package up an application so that someone else who has neither extensive knowledge of the application or the way it needs to be run on the platform can use it.
+# What is GitOps?
+GitOps is a way to do Kubernetes cluster management and application delivery.  It works by using Git as a single source of truth for declarative infrastructure and applications. With GitOps, the use of software agents can alert on any divergence between Git with what's running in a cluster, and if there's a difference, Kubernetes reconcilers automatically update or rollback the cluster depending on the case. With Git at the center of your delivery pipelines, developers use familiar tools to make pull requests to accelerate and simplify both application deployments and operations tasks to Kubernetes.
 
 # Lab Contents
 
-This lab will cover common Helm CLI commands. It will also walk your though installing a publicly available Helm chart into your cluster.
+This lab will cover common GitOps fundamentals, as well as setting up a k8s cluster with the GitOps operators and integrating with a GitHub repository to showcase GitOps processes in play.
