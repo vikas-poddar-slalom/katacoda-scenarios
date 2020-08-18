@@ -20,6 +20,8 @@ Enter file in which to save the key (/root/.ssh/id_rsa):
 ```
 `/root/.ssh/id_rsa_katacoda_github`{{copy}}
 
+Leave the passphrase prompts empty and press `enter`
+
 `cat /root/.ssh/id_rsa_katacoda_github.pub`{{execute}}
 ```
 ssh-rsa AAAAB3NzaC1.....root@minikube
@@ -37,10 +39,19 @@ Host github.com
   AddKeysToAgent yes
 ```
 
+---
+
+Setup your user email and name
+
+`git config --global user.email "you@example.com"`{{copy}}
+`git config --global user.name "Your Name"`{{copy}}
+
 ### 2. Fork & Clone the Bricef GitOps repository
 In order to control the operation of your cluster using GitOps, you'll need to have a control repository in which the state of your cluster can be defined. For this tutorial, we will use the code in the Bricef GitOps tutorial. `github.com/bricef/gitops-tutorial` is already set up with all the files you'll need to follow along. Fork it to your GitHub account. When you have your own remote repository, clone it to your local workspace:
 
-`git clone <url of your forked repository>`{{execute}}
+`git clone <url of your forked repository>`{{copy}}
+
+As an example: `git clone git@github.com:vikas-poddar-slalom/gitops-tutorial.git`{{execute}}
 
 ### 3. Start the minikube cluster
 

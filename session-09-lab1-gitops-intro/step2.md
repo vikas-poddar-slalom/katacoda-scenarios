@@ -9,6 +9,7 @@ The needed deployment manifests are kept in this repository's `flux` directory.
 If you have `kubectl` configured correctly, you'll be able to install the Flux operator by applying the manifests to your cluster:
 
 `cd gitops-tutorial`{{execute}}
+
 `kubectl apply -f ./flux/`{{execute}}
 
 You should see that this will create several objects in your cluster

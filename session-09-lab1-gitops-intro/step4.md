@@ -15,7 +15,7 @@ We have a template deployment in the `examples` directory. Copy this example to 
 
 If everything has been configured correctly so far, you should be able to watch for changes in your cluster and see the `podinfo` deployment running after a little while.
 
-`kubectl get pods --watch`{{execute}}
+`watch kubectl get pods`{{execute}}
 ```
 NAME                        READY     STATUS    RESTARTS   AGE
 flux-6f9798f7f-6hcc9        1/1       Running   0          12m
