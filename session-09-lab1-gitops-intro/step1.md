@@ -10,42 +10,18 @@ Of course, you can also configure the Flux operator to use a private git host, b
 
 ### 1. Setup GitHub Account
 
-TBD @Jai: How much do I need to get into setting up a GitHub account with SSH Keys? The Bricef tutorial seems to rely on that, so it seems pretty important to do
+If you do not already have a GitHub account, create one by visiting `https://github.com/`
 
-`ssh-keygen`{{execute}}
-
-Leave all prompts empty and press `enter`
-
-`cat /root/.ssh/id_rsa.pub`{{execute}}
+Sign up for an account with
 ```
-ssh-rsa AAAAB3NzaC1.....root@minikube
+username: first-last-slalom
+email: Slalom email
+password: something secure that you will remember
 ```
 
-Open GitHub, navigate to your fork, go to *Setting* > *Deploy keys*, click on *Add deploy key*, give it a `Title` like `Clone Key`, check *Allow write access*, paste the public key and click Add key.
+### 2. Fork the Flux Get Started repository
 
-`touch ~/.ssh/config`{{execute}}
-In the editor, copy these contents into the `~/.ssh/config` file
-```
-Host github.com
-  HostName github.com
-  PreferredAuthentications publickey
-  IdentityFile /root/.ssh/id_rsa
-  AddKeysToAgent yes
-```
-
----
-
-Setup your user email and name
-
-`git config --global user.email "you@example.com"`{{copy}}
-`git config --global user.name "Your Name"`{{copy}}
-
-### 2. Fork & Clone the Flux Get Started repository
-In order to control the operation of your cluster using GitOps, you'll need to have a control repository in which the state of your cluster can be defined. For this tutorial, we will use the code in the Flux Get Started repository. `https://github.com/fluxcd/flux-get-started` is already set up with all the files you'll need to follow along. Fork it to your GitHub account. When you have your own remote repository, clone it to your local workspace:
-
-`git clone <url of your forked repository>`{{copy}}
-
-As an example: `git clone git@github.com:vikas-poddar-slalom/flux-get-started.git`{{execute}}
+In order to control the operation of your cluster using GitOps, you'll need to have a control repository in which the state of your cluster can be defined. For this tutorial, we will use the code in the Flux Get Started repository. `https://github.com/fluxcd/flux-get-started` is already set up with all the files you'll need to follow along. Fork it to your GitHub account.
 
 ### 3. Start the minikube cluster
 

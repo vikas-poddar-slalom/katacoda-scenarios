@@ -1,6 +1,6 @@
 # Install the Flux Operator
 
-Using the documentation at `https://docs.fluxcd.io/en/latest/references/fluxctl/`, install Flux using `snap`
+Following the documentation at `https://docs.fluxcd.io/en/latest/references/fluxctl/`, install Flux using `snap`
 
 `snap install fluxctl --classic`{{execute}}
 
@@ -15,9 +15,13 @@ Create a `flux` namespace
 
 `kubectl create ns flux`{{execute}}
 
-Install Flux in the cluster; replace `YOURUSER` with your username
+---
+
+Install Flux in the cluster; replace `YOURUSER` with your GitHub username in the format `first-last-slalom`
+
+`export GHUSER="YOURUSER"`{{copy}}
+
 ```
-export GHUSER="YOURUSER"
 fluxctl install \
 --git-user=${GHUSER} \
 --git-email=${GHUSER}@users.noreply.github.com \
@@ -26,20 +30,29 @@ fluxctl install \
 --namespace=flux | kubectl apply -f -
 ```
 
+Expect to see
+
 ```
-export GHUSER="vikas.poddar@slalom.com"
-fluxctl install \
---git-user=${GHUSER} \
---git-email=${GHUSER}@users.noreply.github.com \
---git-url=git@github.com:${GHUSER}/flux-get-started \
---git-path=namespaces,workloads \
---namespace=flux | kubectl apply -f -
+serviceaccount/flux created
+clusterrole.rbac.authorization.k8s.io/flux created
+clusterrolebinding.rbac.authorization.k8s.io/flux created
+deployment.apps/flux created
+secret/flux-git-deploy created
+deployment.apps/memcached created
+service/memcached created
 ```
+
+The `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository
 
 ---
 
 Wait for Flux to start
 
-`kubectl -n flux rollout status deployment/flux --watch`{{execute}}
+`kubectl -n flux rollout status deployment/flux`{{execute}}
 
-Use `ctrl+c` to end the watch
+Expect to see a successful roll out
+
+```
+$ kubectl -n flux rollout status deployment/flux --watch
+deployment "flux" successfully rolled out
+```
