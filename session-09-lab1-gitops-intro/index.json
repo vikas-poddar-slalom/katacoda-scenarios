@@ -1,8 +1,8 @@
 {
-  "title": "Session 3 - Lab 1 - Helm Charts Intro",
-  "description": "Gaining familiarity with the Helm CLI",
-  "difficulty": "Beginner",
-  "time": "10-15 minutes",
+  "title": "Session 9 - Lab 1 - GitOps Intro",
+  "description": "Gaining familiarity with GitOps",
+  "difficulty": "Intermediate",
+  "time": "TBD minutes",
   "details": {
     "steps": [
       {
@@ -30,7 +30,8 @@
     }
   },
   "environment": {
-    "uilayout": "terminal"
+    "uilayout": "editor-terminal",
+    "uieditorpath": "/root/"
   },
   "backend": {
     "imageid": "minikube-running"
