@@ -26,7 +26,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl05 [...]
 ```
 You now need to copy this key and add it to github or bitbucket as a R/W key for your remote repository.
 
-See the documentation on [how to do this for Github and Bitbucket](docs/adding-write-keys.md). Bitbucket will require the keys to be added to your profile instead of your repository.
+See the documentation on [how to do this for Github and Bitbucket](https://github.com/bricef/gitops-tutorial/blob/master/docs/adding-write-keys.md). Bitbucket will require the keys to be added to your profile instead of your repository.
 
 ## 2. Configure the operator to read from your repository
 

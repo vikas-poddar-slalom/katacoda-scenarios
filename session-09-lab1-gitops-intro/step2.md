@@ -29,9 +29,11 @@ Alongside flux, we have also installed a memcache service for flux to use, and a
 
 You should now be able to see the flux pod running in the cluster:
 
-`kubectl get pods`{{execute}}
+`kubectl get pods --watch`{{execute}}
 ```
 NAME                        READY     STATUS    RESTARTS   AGE
 flux-9d69f6fc4-5t5w6        1/1       Running   0          18m
 memcached-dbb59cb58-phk9s   1/1       Running   0          18m
 ```
+
+Use `ctrl+c` to end the watch

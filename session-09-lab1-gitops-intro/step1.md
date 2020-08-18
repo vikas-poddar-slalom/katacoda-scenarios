@@ -12,6 +12,31 @@ Of course, you can also configure the Flux operator to use a private git host, b
 
 TBD @Jai: How much do I need to get into setting up a GitHub account with SSH Keys? The Bricef tutorial seems to rely on that, so it seems pretty important to do
 
+`ssh-keygen`{{execute}}
+
+```
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+```
+`/root/.ssh/id_rsa_katacoda_github`{{copy}}
+
+`cat /root/.ssh/id_rsa_katacoda_github.pub`{{execute}}
+```
+ssh-rsa AAAAB3NzaC1.....root@minikube
+```
+
+In Settings, SSH and GPG Keys, Add public key with Title `Katacoda Key - Delete`
+
+`touch ~/.ssh/config`{{execute}}
+In the editor, copy these contents into the `~/.ssh/config` file
+```
+Host github.com
+  HostName github.com
+  PreferredAuthentications publickey
+  IdentityFile /root/.ssh/id_rsa_katacoda_github
+  AddKeysToAgent yes
+```
+
 ### 2. Fork & Clone the Bricef GitOps repository
 In order to control the operation of your cluster using GitOps, you'll need to have a control repository in which the state of your cluster can be defined. For this tutorial, we will use the code in the Bricef GitOps tutorial. `github.com/bricef/gitops-tutorial` is already set up with all the files you'll need to follow along. Fork it to your GitHub account. When you have your own remote repository, clone it to your local workspace:
 
