@@ -17,6 +17,14 @@ Copy the k8s_config.tgz file to your working directory, untar it, and push the c
 `git remote add origin https://gitlab.com/${GLUSER}/my-nodejs-app-config.git`{{copy}}
 "<YOUR-USER-NAME>" will be the username you used to sign up for GitLab. For example, first-last-slalom
 
+---
+
+Using the UI editor, in the `config/workloads/nodeapp-dep.yaml`, replace "<YOUR-USER-NAME>" with the correct value e.g. first-last-slalom
+
+Also replace the image tag **1.0.0** with the tag from your container registry in GitLab. Find it by navigating to you Container Registry and selecting your image name. This will let Kubernetes find the initial starting tag and then let Flux maintain auto-deploy with new tags afterwards.
+
+---
+
 `git add .`{{execute}}
 
 `git commit -m "Initial commit"`{{execute}}

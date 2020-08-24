@@ -60,13 +60,15 @@ Describe the pod to see the container image version is updated
 
 `kubectl describe pod $POD_NAME`{{execute}}
 
-*If you remember to Step 5, we added an image pull secret. Flux transparently uses that secret to monitor for updated images*
+*If you think back to Step 5, we added an image pull secret. Flux transparently uses that secret to monitor for updated images*
 
 ## 5. Verify the new deployment
 
-`curl http://nodeapp:8080/1`{{execute}}
+`export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
 
-Expect to see a JSON response
+`curl http://${CIP}:8080/1`{{execute}}
+
+Expect to see a JSON response with 1 user.
 
 # Congratulations!!
 

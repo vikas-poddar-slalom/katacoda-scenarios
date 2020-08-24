@@ -9,11 +9,18 @@ Following the documentation at `https://docs.fluxcd.io/en/latest/references/flux
 fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
 ```
 
+This command may take some time to complete
+
 ---
 
 Create a `flux` namespace
 
 `kubectl create ns flux`{{execute}}
+
+```bash
+$ kubectl create ns flux
+namespace/flux created
+```
 
 ---
 

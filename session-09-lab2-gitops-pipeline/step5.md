@@ -79,7 +79,7 @@ Then use `kubectl` to get the yaml for this secret. Every namespace that needs t
 
 Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
 
-Commit and push the new `image-pull-secret.yaml` file to GitLab
+Before you commit and push the new `config/namespaces/image-pull-secret.yaml` file to GitLab, open the file in the editor and remove the lines with "creationTimestamp", "resourceVersion", and "uid"
 
 `git add .`{{execute}}
 

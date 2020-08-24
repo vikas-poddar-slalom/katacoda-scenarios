@@ -35,10 +35,16 @@ Done.
 If everything has been configured correctly so far, you should be able to watch for changes in your cluster and see the new `nodeapp` service running after a little while.
 
 `kubectl get services -n demo`{{execute}}
-```
-TBD
+```bash
+$ kubectl get services -n demo
+NAME      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+nodeapp   ClusterIP   10.108.95.142   <none>        8080/TCP   9s
 ```
 
-Confirm the change by hitting the service directly without port-forward
+Confirm the change by hitting the service directly without port-forward using the IP Address above
 
-`curl http://nodeapp:8080/listUsers`{{execute}}
+`export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
+
+`curl http://${CIP}:8080/listUsers`{{execute}}
+
+Expect to see a JSON response with 4 users.
