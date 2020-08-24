@@ -1,0 +1,11 @@
+stages:
+  - containerize
+containerize:
+  stage: containerize # must match the stage name declared above
+  script:
+    # Build the container image; tag it with registry/app:version
+    - docker build -t registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID} .
+    # Push the container image to the registry
+    - docker push registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID}
+    # Cleanup by removing the local image
+    - docker image rm registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID}
