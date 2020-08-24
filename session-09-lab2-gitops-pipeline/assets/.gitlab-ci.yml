@@ -1,11 +1,23 @@
 stages:
   - containerize
 containerize:
+  # Run the stage using a Docker image
+  image: docker:19.03.12
   stage: containerize # must match the stage name declared above
+  services:
+    - docker:19.03.12-dind
+  variables:
+    # CI_REGISTRY_IMAGE would be resolved to the address of the registry tied to this project.
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:1.0.$CI_BUILD_ID
   script:
+    # Login to the registry.
+    # Using the special CI_REGISTRY_USER variable: The user specified by this variable is created for you in order to push to the Registry connected to your project.
+    # Its password is automatically set with the CI_REGISTRY_PASSWORD variable.
+    # This allows you to automate building and deploying your Docker images and has read/write access to the Registry.
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     # Build the container image; tag it with registry/app:version
-    - docker build -t registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID} .
+    - docker build -t $IMAGE_TAG .
     # Push the container image to the registry
-    - docker push registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID}
+    - docker push $IMAGE_TAG
     # Cleanup by removing the local image
-    - docker image rm registry.gitlab.com/<YOU-USER-NAME>/my-nodejs-app:1.0.${CI_BUILD_ID}
+    - docker image rm $IMAGE_TAG

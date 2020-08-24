@@ -29,21 +29,8 @@ Open https://gitlab.com
 1. Check **Write access allowed** to enable write access for this key; this is a requirement for FluxCD
 1. Click **Add key**
 
-## 2. Add a container registry secret
 
-Using `kubectl` commands, add a secret that will be used to pull images from the repository
-
-`docker login registry.gitlab.com`{{execute}}
-
-Enter your username and password and login to the registry
-
-Create the secret
-
-`kubectl create secret generic my-nodeapp-registry-secret \
-    --from-file=.dockerconfigjson=~/.docker/config.json> \
-    --type=kubernetes.io/dockerconfigjson`{{execute}}
-
-## 3. Verify Flux is watching this repository
+## 2. Verify Flux is watching this repository
 
 In this example we are using a simple example of a webservice that returns a message on the `localhost:8181/listUsers` endpoint.
 
@@ -61,7 +48,50 @@ Waiting for 7ff201d to be applied ...
 Done.
 ```
 
+## 3. Add a container registry secret
+
+Using `kubectl` commands, add a secret that will be used to pull images from the repository
+
+`docker login registry.gitlab.com`{{execute}}
+
+Enter your username and password and login to the registry. These will the same credential you use for git
+
+Upon success, expect to see something like:
+```bash
+Username: vikas.poddar@slalom.com
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+Create the secret; this secret will be used as an image pull secret
+
+`kubectl create secret generic my-nodeapp-registry-secret --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson -n demo`{{execute}}
+
 ---
+
+Then use `kubectl` to get the yaml for this secret. Every namespace that needs this secret will need to deploy this secret. We will utilize Flux to help us maintain this.
+
+`kubectl get secret my-nodeapp-registry-secret -n demo -o yaml > namespaces/image-pull-secret.yaml`{{execute}}
+
+Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
+
+Commit and push the new `image-pull-secret.yaml` file to GitLab
+
+`git add .`{{execute}}
+
+`git commit -m "Adding image pull secret"`{{execute}}
+
+`git push -u origin master`{{execute}}
+
+---
+
+Flux transparently looks at the image pull secrets that you attach to workloads and service accounts, and thereby uses the same credentials that Kubernetes uses for pulling each image. In general, if your pods are running, then Kubernetes has pulled the images, and Flux should be able to access them too.
+
+## 4. Verify
 
 If everything has been configured correctly so far, you should be able to watch for changes in your cluster and see the `nodeapp` deployment running after a little while.
 
@@ -86,7 +116,3 @@ Press `enter` to get the prompt back
 Expect to see a JSON response in your terminal
 
 Use `kill %1`{{execute}} to kill the port forwarding
-
----
-
-Move on to the next step where we will make a change to the configuration code and watch Flux automatically update the k8s deployment to match!

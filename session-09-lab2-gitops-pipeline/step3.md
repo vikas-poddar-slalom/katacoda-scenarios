@@ -14,7 +14,7 @@ Copy the k8s_config.tgz file to your working directory, untar it, and push the c
 
 `git init`{{execute}}
 
-`git remote add origin https://gitlab.com/<YOUR-USER-NAME>/my-nodejs-app-config.git`{{copy}}
+`git remote add origin https://gitlab.com/${GLUSER}/my-nodejs-app-config.git`{{copy}}
 "<YOUR-USER-NAME>" will be the username you used to sign up for GitLab. For example, first-last-slalom
 
 `git add .`{{execute}}

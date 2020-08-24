@@ -17,9 +17,7 @@ Create a `flux` namespace
 
 ---
 
-Install Flux in the cluster; replace `YOURUSER` with your GitLab username in the format `first-last-slalom`
-
-`export GLUSER="YOURUSER"`{{copy}}
+Install Flux in the cluster
 
 ```
 fluxctl install \

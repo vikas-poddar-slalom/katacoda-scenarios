@@ -12,10 +12,23 @@ Copy the nodejs_app.tgz file to your working directory, untar it, and push the c
 
 `cd ~/workdir/app`{{execute}}
 
+First set these variables to aid in configuring your local to connect with remote.
+
+`YOUR-USER-NAME` should be your GitLab username e.g. first-last-slalom.
+
+`export GLUSER="YOUR-USER-NAME"`{{copy}}
+
+`export GLEMAIL="YOUR-EMAIL"`{{copy}}
+
+`export GLNAME="Your Name"`{{copy}}
+
 `git init`{{execute}}
 
-`git remote add origin https://gitlab.com/<YOUR-USER-NAME>/my-nodejs-app.git`{{copy}}
-"<YOUR-USER-NAME>" will be the username you used to sign up for GitLab. For example, first-last-slalom
+`git config --global user.email "${GLEMAIL}"`{{execute}}
+
+`git config --global user.name "${GLNAME}"`{{execute}}
+
+`git remote add origin https://gitlab.com/${GLUSER}/my-nodejs-app.git`{{execute}}
 
 `git add .`{{execute}}
 
@@ -59,6 +72,16 @@ Copy the `.gitlab-ci.yml` file to your application directory and push to GitLab.
 
 Open this file in the UI editor above for an explanation of the configuration. Remember to place "<YOU-USER-NAME>" with your GitLab username e.g. first-last-slalom
 
+---
+
+**Note**: Sometimes this file does not show in the editor. Run the below command to replace YOUR-USER-NAME with the correct value if that happens
+
+This step is optional if you run into this problem: `sed -i "s/YOUR-USER-NAME/${GLUSER}/g" .gitlab-ci.yml`{{execute}}
+
+Use `cat .gitlab-ci.yml`{{execute}} to verify the contents of the file are correct
+
+---
+
 This pipeline currently only has one stage which is to build and publish the Docker image
 
 Now push the pipeline to your app repository
@@ -73,7 +96,9 @@ Now that you have pushed your pipeline configuration to GitLab, you can view you
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project
 1. On the left side, select `CI / CD` > `Pipelines`
 
-Here you should see your pipeline, and can even trigger it manually to build and publish your Docker image
+Here you should see your pipeline running
+
+## 4. Container Registry
 
 After it runs, verify your container image was published by
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project

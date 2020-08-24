@@ -60,6 +60,8 @@ Describe the pod to see the container image version is updated
 
 `kubectl describe pod $POD_NAME`{{execute}}
 
+*If you remember to Step 5, we added an image pull secret. Flux transparently uses that secret to monitor for updated images*
+
 ## 5. Verify the new deployment
 
 `curl http://nodeapp:8080/1`{{execute}}
@@ -68,4 +70,4 @@ Expect to see a JSON response
 
 # Congratulations!!
 
-Congrats! In this lab, you have successfully configured an application pipeline and Flux to auto-build your code using traditional DevOps and synchronize your deployment using GitOps.
+Congrats! In this lab, you have successfully configured an application pipeline to auto-build your code using traditional DevOps and Flux synchronize your deployment using GitOps.
