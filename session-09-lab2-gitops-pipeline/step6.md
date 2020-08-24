@@ -8,7 +8,7 @@ In this example we are using a simple example of a webservice and will improve i
 
 Copy the `nodeapp-svc.yml` file to your k8s config directory and push to the repository
 
-`cd ~/workdir/config && cp path/nodeapp-svc.yml ./workloads/.`{{execute}}
+`cd ~/workdir/config && cp ~/assets/nodeapp-svc.yml ./workloads/.`{{execute}}
 
 `git add .`{{execute}}
 

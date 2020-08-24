@@ -6,11 +6,11 @@ Push the k8s manifest files to the configuration repository. This repository wil
 
 Copy the k8s_config.tgz file to your working directory, untar it, and push the code to your application repository
 
-`mkdir -p ~/workdir/config && cd ~/workdir/config && cp path/k8s_config.tgz . `{{execute}}
+`mkdir -p ~/workdir/tmp && cd ~/workdir/tmp && cp ~/assets/k8s_config.tgz . `{{execute}}
 
-`tar xvf k8s_config.tgz && rm k8s_config.tgz`{{execute}}
+`tar xvf k8s_config.tgz && mv k8s_config ~/workdir/config && cd ~/workdir && rm -rf tmp`{{execute}}
 
-`cd k8s_config`{{execute}}
+`cd ~/workdir/config`{{execute}}
 
 `git init`{{execute}}
 

@@ -6,11 +6,11 @@ Push the starter Node Application to your GitLab CI repository
 
 Copy the nodejs_app.tgz file to your working directory, untar it, and push the code to your application repository
 
-`mkdir -p ~/workdir/app && cd ~/workdir/app && cp path/nodejs_app.tgz . `{{execute}}
+`mkdir -p ~/workdir/tmp && cd ~/workdir/tmp && cp ~/assets/nodejs_app.tgz . `{{execute}}
 
-`tar xvf nodejs_app.tgz && rm nodejs_app.tgz`{{execute}}
+`tar xvf nodejs_app.tgz && mv nodejs_app ~/workdir/app && cd ~/workdir && rm -rf tmp`{{execute}}
 
-`cd nodejs_app`{{execute}}
+`cd ~/workdir/app`{{execute}}
 
 `git init`{{execute}}
 
@@ -31,7 +31,7 @@ With GitLab, your new project already comes with a container registry. To utiliz
 
 Copy the `Dockerfile` to your application directory
 
-`cp path/Dockerfile .`{{execute}}
+`cp ~/assets/Dockerfile .`{{execute}}
 
 Before you push to this file, verify that it build correctly
 
@@ -55,7 +55,7 @@ Now push the new files to your app repository
 
 Copy the `.gitlab-ci.yml` file to your application directory and push to GitLab. This file defines the pipeline.
 
-`cp path/.gitlab-ci.yml .`{{execute}}
+`cp ~/assets/.gitlab-ci.yml .`{{execute}}
 
 Open this file in the UI editor above for an explanation of the configuration. Remember to place "<YOU-USER-NAME>" with your GitLab username e.g. first-last-slalom
 
