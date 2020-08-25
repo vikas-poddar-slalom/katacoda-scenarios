@@ -1,5 +1,7 @@
 # Install the Flux Operator
 
+Now you can install the Flux Operator in your minikube cluster. This will be similar to Lab 1 where we did the same thing.
+
 Following the documentation at `https://docs.fluxcd.io/en/latest/references/fluxctl/`, install Flux using `snap`
 
 `snap install fluxctl --classic`{{execute}}
@@ -9,7 +11,7 @@ Following the documentation at `https://docs.fluxcd.io/en/latest/references/flux
 fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
 ```
 
-This command may take some time to complete
+This command can take a few minutes to complete.
 
 ---
 
@@ -47,7 +49,7 @@ deployment.apps/memcached created
 service/memcached created
 ```
 
-The `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository
+The `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository. You can omit it and have Flux watch the entire repository.
 
 ---
 

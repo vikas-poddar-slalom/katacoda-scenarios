@@ -10,7 +10,7 @@ Of course, you can also configure the Flux operator to use a private git host, b
 
 ### 1. Setup GitHub Account
 
-If you do not already have a GitHub account, create one by visiting `https://github.com/`
+If you do not already have a GitHub account, create one by visiting https://github.com/
 
 Sign up for an account with
 ```

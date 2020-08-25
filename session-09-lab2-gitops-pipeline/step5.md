@@ -21,7 +21,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl05 [...]
 You now need to copy this key and add it to GitLab with `R/W` permissions for your remote repository.
 
 Open https://gitlab.com
-1. Navigate to `App Config` repository
+1. Navigate to `App Config` project
 1. In the left side navigation menu, select **Settings** > **Repository**
 1. Expand the **Deploy Keys** section
 1. Paste the public key that you copied into the **Key** text box
@@ -40,6 +40,7 @@ By default, Flux git pull frequency is set to 5 minutes. You can tell Flux to sy
 
 `fluxctl sync --k8s-fwd-ns flux`{{execute}}
 
+Expect to see
 ```
 $ fluxctl sync --k8s-fwd-ns flux
 Synchronizing with ssh://git@gitlab.com/vikas-poddar-slalom/my-nodejs-app-config
@@ -48,7 +49,19 @@ Waiting for 7ff201d to be applied ...
 Done.
 ```
 
+If you get an error like
+```
+$ fluxctl sync --k8s-fwd-ns flux
+Error: git repository ssh://git@gitlab.com/vikas-poddar-slalom/my-nodejs-app-config is not ready to sync
+
+Full error message: git repo has been cloned but not yet checked for write access
+Run 'fluxctl sync --help' for usage.
+```
+just run the sync command again
+
 ## 3. Add a container registry secret
+
+The secret for image pull needs to be in a specific base64 encoded JSON string. The easiest way to create this string and k8s manifest for it is to first manually login to the Docker registry and then manually create the secret using `kubectl`. Afterwards, the secret can be exported into a YAML file and uploaded to the repository.
 
 Using `kubectl` commands, add a secret that will be used to pull images from the repository
 
@@ -89,6 +102,12 @@ Before you commit and push the new `config/namespaces/image-pull-secret.yaml` fi
 
 ---
 
+Force sync to speed up the process. If you want to see Flux work in its natural habitat, skip this and let it sync on its own.
+
+`fluxctl sync --k8s-fwd-ns flux`{{execute}}
+
+---
+
 Flux transparently looks at the image pull secrets that you attach to workloads and service accounts, and thereby uses the same credentials that Kubernetes uses for pulling each image. In general, if your pods are running, then Kubernetes has pulled the images, and Flux should be able to access them too.
 
 ## 4. Verify
@@ -97,8 +116,10 @@ If everything has been configured correctly so far, you should be able to watch 
 
 `kubectl get pods -n demo --watch`{{execute}}
 ```
-NAME                      READY   STATUS    RESTARTS   AGE
-nodeapp-7599d75df-2b92b   1/1     Running   0          68s
+$ kubectl get pods -n demo --watch
+NAME                       READY   STATUS              RESTARTS   AGE
+nodeapp-74d66d8cb4-nws2z   0/1     ContainerCreating   0          5s
+nodeapp-74d66d8cb4-nws2z   1/1     Running             0          39s
 ```
 
 Press `ctrl+c` in the terminal to exit the `watch`

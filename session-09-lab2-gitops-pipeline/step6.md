@@ -1,5 +1,7 @@
 # Deploy using Flux
 
+In this step we will explore adding a new k8s manifest for a Service to the Config Repository and will see Flux synchronize the state of the cluster with the configuration.
+
 ## 1. Commit a small change
 
 Now that the operator is set up to react to changes in your repository's `workloads` and `namespaces` directory, we need to provide it with some configuration for it to synchronise.
@@ -32,7 +34,7 @@ Done.
 
 ## 2. Verify that Flux updated the deployment
 
-If everything has been configured correctly so far, you should be able to watch for changes in your cluster and see the new `nodeapp` service running after a little while.
+If everything has been configured correctly so far, you should be able see a new `nodeapp` service running.
 
 `kubectl get services -n demo`{{execute}}
 ```bash

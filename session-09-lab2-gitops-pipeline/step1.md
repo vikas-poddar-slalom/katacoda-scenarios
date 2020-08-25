@@ -10,7 +10,7 @@ Of course, you can also configure the Flux operator to use a private git host, b
 
 ### 1. Setup GitLab Account
 
-If you do not already have a GitLab account, create one by visiting `https://gitlab.com/`
+If you do not already have a GitLab account, create one by visiting https://gitlab.com/
 
 Sign up for an account with
 ```
@@ -21,9 +21,11 @@ password: something secure that you will remember
 
 ### 2. Create Repositories
 
-In GitLab, create 2 projects with a visibility level of private; for the slugs, use:
+In GitLab, create 2 blank projects with a visibility level of private; for the slugs, use:
 1. `my-nodejs-app`{{copy}}
 1. `my-nodejs-app-config`{{copy}}
+
+To create a new project, click the drop down next to the `Search` bar.
 
 If you want, for ease of use, and if you are already familiar with Git CLI, you can use it via SSH/HTTPS. But for the purposes of this lab, we will only interact with GitLab via the browser.
 

@@ -36,7 +36,7 @@ In GitLab, for the `App` project, navigate to the pipeline and ensure it ran suc
 
 ## 3. Docker Image
 
-After the pipeline runs, you should see a new image in the `App` projects' container registry
+After the pipeline runs, you should see a new image in the `App` project's container registry
 
 ## 4. k8s and Flux
 
@@ -48,21 +48,35 @@ annotations:
   fluxcd.io/tag.app: semver:~1.0
 ```
 
-These annotations let Flux know that we want it to watch the container registry for new images with the version pattern `1.0.x` and auto-deploy them.
+These annotations let Flux know that we want it to watch the container registry for new images with the version pattern `1.0.x` and auto-deploy them. If you do _not_ want auto-deploy, simply remove these lines or set `fluxcd.io/automated` to **false**
 
 Wait a few minutes and you should see the pod(s) restarted
 
 `kubectl get pods -n demo --watch`{{execute}}
+```
+$ kubectl get pods -n demo --watch
+NAME                       READY   STATUS        RESTARTS   AGE
+nodeapp-6f76589966-v8bb2   1/1     Running       0          28s
+nodeapp-74d66d8cb4-nws2z   1/1     Terminating   0          8m27s
+```
 
 Describe the pod to see the container image version is updated
 
 `export POD_NAME=$(kubectl get pods --namespace demo -l "app=nodeapp" -o jsonpath="{.items[0].metadata.name}")`{{execute}}
 
-`kubectl describe pod $POD_NAME`{{execute}}
+`kubectl describe pod $POD_NAME -n demo`{{execute}}
+
+Look for a line in the Events as such
+```
+Normal  Pulled     77s   kubelet, minikube  Successfully pulled image "registry.gitlab.com/vikas-poddar-slalom/my-nodejs-app:1.0.703238796"
+```
+Compare that the image version is the latest image in your registry in Gitlab.
 
 *If you think back to Step 5, we added an image pull secret. Flux transparently uses that secret to monitor for updated images*
 
 ## 5. Verify the new deployment
+
+The new image has a new endpoint to get user by ID. Let's hit this new endpoint.
 
 `export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
 

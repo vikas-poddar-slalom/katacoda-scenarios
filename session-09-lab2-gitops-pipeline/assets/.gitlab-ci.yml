@@ -8,6 +8,7 @@ containerize:
     - docker:19.03.12-dind
   variables:
     # CI_REGISTRY_IMAGE would be resolved to the address of the registry tied to this project.
+    # CI_BUILD_ID is a unique build ID
     IMAGE_TAG: $CI_REGISTRY_IMAGE:1.0.$CI_BUILD_ID
   script:
     # Login to the registry.
