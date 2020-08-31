@@ -52,6 +52,9 @@
     "showdashboard": true,
     "dashboards": [
       {"name": "Argo CD", "href": "https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com"}
+    ],
+    "terminals": [
+      {"name": "Port Forward", "target": "host01"}
     ]
   },
   "backend": {

@@ -16,9 +16,23 @@ You can view the manifest in the UI editor above.
 
 Create an `argocd` namespace and apply the manifest
 
-`kubectl create namespace argocd`
+`kubectl create namespace argocd`{{execute}}
 
 `kubectl apply -n argocd -f argo-cd-install.yaml`{{execute}}
+
+Wait for the pods to start
+
+`$ kubectl get pods -n argocd --watch`{{execute}}
+
+Expect to see the following pods starting up and reach a running state
+```
+NAME                                             READY   STATUS    RESTARTS   AGE
+argocd-application-controller-64f989c7c4-qvgnw   1/1     Running   0          2m2s
+argocd-dex-server-688b8f4f48-rbk7c               1/1     Running   0          2m2s
+argocd-redis-54b6ff7bf6-2lpx8                    1/1     Running   0          2m2s
+argocd-repo-server-7bb588466-8vdvx               1/1     Running   0          2m2s
+argocd-server-7cb78565f5-pr75m                   1/1     Running   0          2m2s
+```
 
 ## 3. Open the Argo CD GUI
 
@@ -29,3 +43,9 @@ In Lab 2, we saw Flux synchronize with our configuration, but all of our interac
 Argo improves upon these challenges and more. You can see a full list of features at https://argoproj.github.io/argo-cd/#features
 
 Switch to Argo CD tab in Katacoda to see the UI
+
+Swith to the `Port Forward` terminal to run this command
+
+`kubectl port-forward svc/argocd-server -n argocd 8080:80`{{execute}}
+
+After port-forwarding, select the `Argo CD` tab to open a browser window to the GUI. Or click the link https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
