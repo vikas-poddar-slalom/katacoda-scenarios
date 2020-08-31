@@ -22,7 +22,7 @@ Create an `argocd` namespace and apply the manifest
 
 Wait for the pods to start
 
-`$ kubectl get pods -n argocd --watch`{{execute}}
+`kubectl get pods -n argocd --watch`{{execute}}
 
 Expect to see the following pods starting up and reach a running state
 ```
@@ -33,6 +33,8 @@ argocd-redis-54b6ff7bf6-2lpx8                    1/1     Running   0          2m
 argocd-repo-server-7bb588466-8vdvx               1/1     Running   0          2m2s
 argocd-server-7cb78565f5-pr75m                   1/1     Running   0          2m2s
 ```
+
+Use `ctrl+c` to exit the watch
 
 ## 3. Open the Argo CD GUI
 
@@ -46,6 +48,12 @@ Switch to Argo CD tab in Katacoda to see the UI
 
 Swith to the `Port Forward` terminal to run this command
 
-`kubectl port-forward svc/argocd-server -n argocd 8080:80`{{execute}}
+`kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 0.0.0.0`{{execute}}
 
-After port-forwarding, select the `Argo CD` tab to open a browser window to the GUI. Or click the link https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+We have to add `--address 0.0.0.0` to allow the port-forward to allow the Katacoda Proxy work with the forwarding.
+
+After port-forwarding, select the `Argo CD` tab to open a browser window to the GUI.
+
+Or click the link https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+
+You should be directed to a login page

@@ -1,37 +1,59 @@
-# Configuration Repository
+# Argo CD GUI
 
-In this step, you will setup your Config Repository with 2 k8s manifests to create your namespace and your deployment. 
+In this step, you will use the UI to configure Argo CD to watch your config repository
 
-## 1. Configuration Repository
+## 1. Login
 
-Push the k8s manifest files to the configuration repository. This repository will be monitored by FluxCD to synchronize the k8s deployment with the configuration
+The default username is `admin` and the default password is the `argocd-server` pod's name
 
-Copy the k8s_config.tgz file to your working directory, untar it, and push the code to your application repository
+Get the password by running  
 
-`mkdir -p ~/workdir/tmp && cd ~/workdir/tmp && cp ~/assets/k8s_config.tgz . `{{execute}}
+`kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`{{execute}}
 
-`tar xvf k8s_config.tgz && mv k8s_config ~/workdir/config && cd ~/workdir && rm -rf tmp`{{execute}}
+Once you login, you should see a landing page with no applications
+![Argo CD Landing Page](argocd_landingpage_empty.png)
 
-`cd ~/workdir/config`{{execute}}
+## 2. Connect Repository
 
-`git init`{{execute}}
+Connect your App Config Repository by clicking on the gear icon on the left-hand menu
+![Argo CD Add Repo](argocd_repos_setup1.png)
 
-`git remote add origin https://gitlab.com/${GLUSER}/my-nodejs-app-config.git`{{execute}}
+Click `Connect repo using HTTPS`
 
----
+```
+Type: git
+Repository URL: Paste the HTTPS Repo URL for the config repository in GitLab i.e. https://gitlab.com/vikas-poddar-slalom/my-nodejs-app-config.git
+Username and Password: Your GitLab account credentials
 
-Using the UI editor, in the `config/workloads/nodeapp-dep.yaml`, replace `<YOUR-USER-NAME>` with the correct value e.g. first-last-slalom
+Leave all either fields empty or unchecked
+```
 
-Also replace the image version **1.0.0** with the version from your container registry in GitLab. Find it by navigating to you Container Registry and selecting your image name. This will let Kubernetes find the initial starting tag and then let Flux maintain auto-deploy with new tags afterwards.
+After filling everything out, select `Connect`
 
-The final line should look like `image: registry.gitlab.com/vikas-poddar-slalom/my-nodejs-app:1.0.703198003` but with your own values
+![Look for a successful connection](argocd_repo_connect_success.png)
 
----
+## 3. Add an Application
 
-Now you can push the k8s manifests to your config repository
+We can now add an application to the cluster using the UI
 
-`git add .`{{execute}}
+Go back to the `Applications` by selecting the layers icon on the left-hand menu
+![Apps](argocd_applications.png)
 
-`git commit -m "Initial commit"`{{execute}}
+Select `New App`
+![Argo CD New App](argocd_landingpage_newapp.png)
 
-`git push -u origin master`{{execute}}
+```
+Application Name: My NodeJS App
+Project: default
+Sync Policy: Manual
+Sync Options: Uncheck all boxes
+Source: Paste the HTTPS Repo URL for the config repository in GitLab i.e. https://gitlab.com/vikas-poddar-slalom/my-nodejs-app-config.git
+Revision: HEAD
+Path: /
+Cluster URL: https://kubernetes.default.svc
+Namespace: demo
+
+Leave everything else empty or unchecked
+```
+
+After filling in the form, select `Create`
