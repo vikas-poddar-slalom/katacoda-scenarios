@@ -82,7 +82,7 @@ Ensure the demo namespace is selected and click on `Synchronize`
 ![Synchronize](argocd_namespaces_sync.png)
 
 If the repo and app are setup correctly, expect to see a successful sync
-![Great Success](argocd_namespaces_sync_successful.png)
+![Great Success](argocd_namespaces_sync_success.png)
 
 In Katacoda, go back to the `Terminal` tab and verify the `demo` namespace was created
 
@@ -90,11 +90,18 @@ In Katacoda, go back to the `Terminal` tab and verify the `demo` namespace was c
 
 ---
 
-Back in ArgoCD, sync the `nodejs-app` application now using the same steps. Expect to see a successful sync here as well
+Back in ArgoCD, sync the `nodejs-app` application now using the same steps.
+![Synchronize](argocd_nodeapp_sync.png)
 
-You will see ArgoCD build out a graph of the release. The application will have a deployment, service, and pod
+Expect to see a successful sync here as well
+![Graph](argocd_nodeapp_sync_success.png)
 
-`TODO add screenshot of successful deployment here. My repos need to be setup again, will do that once I get a chance.`
+You will see ArgoCD build out a graph of the release. The application will have the following structure
+* Deployment
+    * Replica Set
+        * Pod
+* Service
+    * Endpoint
 
 You can explore the logs and events for a Pod directly from the UI by selecting the Pod.
 
@@ -102,11 +109,48 @@ In Katacoda's `Terminal`, verify your things were created
 
 `kubectl get all -n demo`{{execute}}
 
+```bash
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/nodeapp-5d6c998b87-gt8v6   1/1     Running   0          7m35s
+
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/nodeapp   ClusterIP   10.102.196.89   <none>        8080/TCP   7m37s
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nodeapp   1/1     1            1           7m38s
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/nodeapp-5d6c998b87   1         1         1       7m38s
+```
+
+---
+
+If everything has been configured correctly so far, you should be able see a new `nodeapp` service running.
+
+Using the `Terminal` tab
+
+`kubectl get services -n demo`{{execute}}
+```bash
+$ kubectl get services -n demo
+NAME      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+nodeapp   ClusterIP   10.108.95.142   <none>        8080/TCP   9s
+```
+
+Confirm the change by hitting the service directly without port-forward using the IP Address above
+
+`export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
+
+`curl http://${CIP}:8080/listUsers`{{execute}}
+
+Expect to see a JSON response with 4 users.
+
 ## 5. Auto-Sync
 
 Lets enable auto-sync on the `namespaces` application and watch ArgoCD automatically sync it.
 
-To do this, select the **namespaces application** in Argo CD > **App Details** in the top right > **Edit** > **Enable Auto-Sync** > **Ok** > **Save** > Click on the 'X' to close the pop-out
+To do this, select the **namespaces application** in Argo CD > **App Details** in the top left > **Edit** > **Enable Auto-Sync** > **Ok** > **Save** > Click on the 'X' to close the pop-out
+
+*Note: When I did this, the setting wouldn't save the first time so I had to do the above steps again to persist the change*
 
 ---
 
@@ -116,13 +160,15 @@ Back in Katacoda, add a new namespace like `demo2` to the namespaces directory a
 
 Commit and push this new configuration
 
-`cd ~/workdir/my-nodejs-app-config && git commit -am 'adding demo2 namespace'`{{execute}}
+`cd ~/workdir/my-nodejs-app-config && git add . && git commit -m 'adding demo2 namespace'`{{execute}}
 
 `git push`{{execute}}
 
 ---
 
-In Argo CD, watch the `namespaces application` to see Argo CD automatically sync the application and create the demo2 namespace
+In Argo CD, watch the `namespaces application` to see Argo CD automatically sync the application and create the demo2 namespace. Hit the `Refresh` button if it does not update.
+
+You should now see a `demo2` namespace in the UI.
 
 In the Katacoda terminal, verify the `demo2` namespace was created
 

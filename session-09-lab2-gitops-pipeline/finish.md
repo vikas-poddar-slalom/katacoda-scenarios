@@ -7,6 +7,8 @@ We hope in after completing this lab, you have a better understanding of GitOps 
 
 ## Cleanup
 
+**If you plan to do Lab 3, please keep your repositories, pipelines, and registry intact as we will be using those.***
+
 If you want to keep your Gitlab projects around, just remember to delete the deploy key from the Config Repository to be on the safe side.
 
 Otherwise, you can just delete both projects by
