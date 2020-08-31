@@ -15,3 +15,5 @@ Otherwise, you can just delete both projects by
 1. Click **Delete project**
 
 This will delete all images, pipelines, code, and deploy keys that were created as a part of this lab.
+
+If you plan to do Lab 3, please keep your repositories, pipelines, and registry intact as we will be using those.
