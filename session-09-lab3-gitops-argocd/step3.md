@@ -171,3 +171,10 @@ You should now see a `demo2` namespace in the UI.
 In the Katacoda terminal, verify the `demo2` namespace was created
 
 `kubectl get ns`{{execute T1}}
+
+---
+
+There are other options during auto-sync to allow you to control the sync and cluster behavior.
+1. pruning of resources
+2. enforcing strict state syncing with the Git repository.
+To learn more, you can read about it at https://argoproj.github.io/argo-cd/user-guide/auto_sync/
