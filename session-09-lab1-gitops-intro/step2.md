@@ -28,7 +28,7 @@ fluxctl install \
 --git-url=git@github.com:${GHUSER}/flux-get-started \
 --git-path=namespaces,workloads \
 --namespace=flux | kubectl apply -f -
-```
+```{{execute}}
 
 Expect to see
 
@@ -40,7 +40,7 @@ deployment.apps/flux created
 secret/flux-git-deploy created
 deployment.apps/memcached created
 service/memcached created
-```
+```{{execute}}
 
 The `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository
 
