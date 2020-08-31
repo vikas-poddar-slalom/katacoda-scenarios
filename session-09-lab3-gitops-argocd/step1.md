@@ -20,8 +20,8 @@ password: something secure that you will remember
 ### 2. Clone Repositories
 
 In Lab 2, you created these repositories:
-1. `my-nodejs-app`{{copy}}
-1. `my-nodejs-app-config`{{copy}}
+1. `my-nodejs-app`
+1. `my-nodejs-app-config`
 
 We will re-use them for this lab
 
@@ -48,31 +48,6 @@ First set these variables to aid in configuring your local to connect with remot
 #### Config Repository
 
 `cd ~/workdir && git clone https://gitlab.com/${GLUSER}/my-nodejs-app-config.git`{{execute}}
-
-### 4. Install Argo CD CLI
-
-`VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')`{{execute}}  
-
-`curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-linux-amd64`{{execute}}
-
-`chmod +x /usr/local/bin/argocd`{{execute}}
-
-Verify
-
-`argocd version`{{execute}}
-
-Expect to see
-```
-$ argocd version
-argocd: v1.7.2+c342d3f
-  BuildDate: 2020-08-27T23:33:37Z
-  GitCommit: c342d3fc9c9c9f0d1c18254b6ffa1e106984a76c
-  GitTreeState: clean
-  GoVersion: go1.14.1
-  Compiler: gc
-  Platform: linux/amd64
-FATA[0000] Argo CD server address unspecified
-```
 
 ### 3. Start the minikube cluster
 

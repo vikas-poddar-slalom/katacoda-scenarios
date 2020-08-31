@@ -6,9 +6,9 @@ In this step, you will use the UI to configure Argo CD to watch your config repo
 
 The default username is `admin` and the default password is the `argocd-server` pod's name
 
-Back in the `Terminal` tab, get the password by running  
+Get the password by running (this runs in the first Terminal tab)
 
-`kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`{{execute}}
+`kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`{{execute T1}}
 
 Once you login, you should see a landing page with no applications
 ![Argo CD Landing Page](argocd_landingpage_empty.png)
@@ -84,9 +84,9 @@ Ensure the demo namespace is selected and click on `Synchronize`
 If the repo and app are setup correctly, expect to see a successful sync
 ![Great Success](argocd_namespaces_sync_success.png)
 
-In Katacoda, go back to the `Terminal` tab and verify the `demo` namespace was created
+Verify the `demo` namespace was created
 
-`kubectl get ns`{{execute}}
+`kubectl get ns`{{execute T1}}
 
 ---
 
@@ -105,9 +105,9 @@ You will see ArgoCD build out a graph of the release. The application will have 
 
 You can explore the logs and events for a Pod directly from the UI by selecting the Pod.
 
-In Katacoda's `Terminal`, verify your things were created
+Verify all things were created
 
-`kubectl get all -n demo`{{execute}}
+`kubectl get all -n demo`{{execute T1}}
 
 ```bash
 NAME                           READY   STATUS    RESTARTS   AGE
@@ -127,9 +127,7 @@ replicaset.apps/nodeapp-5d6c998b87   1         1         1       7m38s
 
 If everything has been configured correctly so far, you should be able see a new `nodeapp` service running.
 
-Using the `Terminal` tab
-
-`kubectl get services -n demo`{{execute}}
+`kubectl get services -n demo`{{execute T1}}
 ```bash
 $ kubectl get services -n demo
 NAME      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
@@ -138,9 +136,9 @@ nodeapp   ClusterIP   10.108.95.142   <none>        8080/TCP   9s
 
 Confirm the change by hitting the service directly without port-forward using the IP Address above
 
-`export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
+`export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute T1}}
 
-`curl http://${CIP}:8080/listUsers`{{execute}}
+`curl http://${CIP}:8080/listUsers`{{execute T1}}
 
 Expect to see a JSON response with 4 users.
 
@@ -156,13 +154,13 @@ To do this, select the **namespaces application** in Argo CD > **App Details** i
 
 Back in Katacoda, add a new namespace like `demo2` to the namespaces directory and push it to the git repository
 
-`cp ~/assets/demo2.yaml ~/workdir/my-nodejs-app-config/namespaces/.`{{execute}}
+`cp ~/assets/demo2.yaml ~/workdir/my-nodejs-app-config/namespaces/.`{{execute T1}}
 
 Commit and push this new configuration
 
-`cd ~/workdir/my-nodejs-app-config && git add . && git commit -m 'adding demo2 namespace'`{{execute}}
+`cd ~/workdir/my-nodejs-app-config && git add . && git commit -m 'adding demo2 namespace'`{{execute T1}}
 
-`git push`{{execute}}
+`git push`{{execute T1}}
 
 ---
 
@@ -172,10 +170,4 @@ You should now see a `demo2` namespace in the UI.
 
 In the Katacoda terminal, verify the `demo2` namespace was created
 
-`kubectl get ns`{{execute}}
-
----
-
-# Congrats
-
-Congrats! You have finished Lab 3 of the GitOps sessions!
+`kubectl get ns`{{execute T1}}

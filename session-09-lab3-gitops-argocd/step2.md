@@ -44,9 +44,9 @@ In Lab 2, we saw Flux synchronize with our configuration, but all of our interac
 
 Argo improves upon these challenges and more. You can see a full list of features at https://argoproj.github.io/argo-cd/#features
 
-Switch to the `Port Forward` terminal to run this command
+Initiate a port-forward to access the Argo CD GUI
 
-`kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 0.0.0.0`{{execute}}
+`kubectl port-forward svc/argocd-server -n argocd 8080:443 --address 0.0.0.0`{{execute T2}}
 
 We have to add `--address 0.0.0.0` to allow the port-forward to allow the Katacoda Proxy work with the forwarding.
 

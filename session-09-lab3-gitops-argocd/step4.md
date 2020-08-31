@@ -11,3 +11,11 @@ In production scenarios, the former method is preferred as it allows for greater
 To rollback, simply select the `History and Rollback` button in the application and select the revision you want to rollback to.
 
 You can try it now with the `namespaces` application
+
+After rolling back, verify the `demo2` namespace is deleted
+
+`kubectl get ns`{{execute}}
+
+# Congrats
+
+Congrats! You have finished Lab 3 of the GitOps sessions!
