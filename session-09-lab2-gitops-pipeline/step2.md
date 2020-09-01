@@ -34,11 +34,7 @@ Copy the nodejs_app.tgz file to your working directory, untar it, and push the c
 
 `git remote add origin https://gitlab.com/${GLUSER}/my-nodejs-app.git`{{execute}}
 
-`git add .`{{execute}}
-
-`git commit -m "Initial commit"`{{execute}}
-
-`git push -u origin master`{{execute}}
+`git add . && git commit -m "Initial commit" && git push -u origin master`{{execute}}
 
 This will push the starter application code to your repository
 
@@ -62,11 +58,7 @@ To prevent the container from being too heavy, the node_modules directory is not
 
 Now push the new files to your app repository
 
-`git add .`{{execute}}
-
-`git commit -m "Adding Dockerfile"`{{execute}}
-
-`git push`{{execute}}
+`git add . && git commit -m "Adding Dockerfile" && git push -u origin master`{{execute}}
 
 ## 3. Pipeline
 
@@ -117,11 +109,7 @@ containerize:
 
 Now push the pipeline to your app repository
 
-`git add .`{{execute}}
-
-`git commit -m "Configuring Pipeline"`{{execute}}
-
-`git push`{{execute}}
+`git add . && git commit -m "Configuring Pipeline" && git push -u origin master`{{execute}}
 
 Now that you have pushed your pipeline configuration to GitLab, you can view your pipeline configuration and status by
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project

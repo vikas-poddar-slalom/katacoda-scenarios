@@ -35,7 +35,7 @@ fluxctl install \
 --git-url=git@gitlab.com:${GLUSER}/my-nodejs-app-config \
 --git-path=namespaces,workloads \
 --namespace=flux | kubectl apply -f -
-```
+```{{execute}}
 
 Expect to see
 

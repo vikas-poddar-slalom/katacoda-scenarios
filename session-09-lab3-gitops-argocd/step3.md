@@ -6,7 +6,7 @@ In this step, you will use the UI to configure Argo CD to watch your config repo
 
 The default username is `admin` and the default password is the `argocd-server` pod's name
 
-Get the password by running (this runs in the first Terminal tab)
+Get the password by running
 
 `kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`{{execute T1}}
 
@@ -54,6 +54,8 @@ Cluster URL: https://kubernetes.default.svc
 Leave everything else empty or unchecked
 ```
 
+**Save your changes**: After filling in the form, select `Create`
+
 Create another application for the `namespace` directory
 
 ```
@@ -69,9 +71,9 @@ Cluster URL: https://kubernetes.default.svc
 Leave everything else empty or unchecked
 ```
 
-After filling in the form, select `Create`
+**Save your changes**: After filling in the form, select `Create`
 
-Expect to see an `Out of Sync` status. This is because you set the sync type to manual and have to initiate the sync
+Expect to see an `Out of Sync` status for both applications. This is because you set the sync type to manual and have to initiate the sync
 ![Out of Sync](argocd_app_outofsync.png)
 
 ## 4. Manual Sync
@@ -81,17 +83,21 @@ Select the `namespaces` application, and click on `Sync`
 Ensure the demo namespace is selected and click on `Synchronize`
 ![Synchronize](argocd_namespaces_sync.png)
 
+You can now click on the `namespace` application to see a visualization of the sync status.
+
 If the repo and app are setup correctly, expect to see a successful sync
 ![Great Success](argocd_namespaces_sync_success.png)
 
-Verify the `demo` namespace was created
+Verify the `demo` namespace was created in the cluster
 
 `kubectl get ns`{{execute T1}}
 
 ---
 
-Back in ArgoCD, sync the `nodejs-app` application now using the same steps.
+Back in the `Argo CD` tab, sync the `nodejs-app` application now using the same steps.
 ![Synchronize](argocd_nodeapp_sync.png)
+
+You can now click on the `nodejs-app` application to see a visualization of the sync status.
 
 Expect to see a successful sync here as well
 ![Graph](argocd_nodeapp_sync_success.png)
@@ -103,7 +109,7 @@ You will see ArgoCD build out a graph of the release. The application will have 
 * Service
     * Endpoint
 
-You can explore the logs and events for a Pod directly from the UI by selecting the Pod.
+You can explore the logs and events for a Pod directly from the UI by selecting the Pod in the visualization graph.
 
 Verify all things were created
 
@@ -134,7 +140,7 @@ NAME      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 nodeapp   ClusterIP   10.108.95.142   <none>        8080/TCP   9s
 ```
 
-Confirm the change by hitting the service directly without port-forward using the IP Address above
+Confirm the change by hitting the service directly using the IP Address above
 
 `export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute T1}}
 
@@ -152,23 +158,21 @@ To do this, select the **namespaces application** in Argo CD > **App Details** i
 
 ---
 
-Back in Katacoda, add a new namespace like `demo2` to the namespaces directory and push it to the git repository
+Add a new namespace like `demo2` to the namespaces directory and push it to the git repository
 
 `cp ~/assets/demo2.yaml ~/workdir/my-nodejs-app-config/namespaces/.`{{execute T1}}
 
 Commit and push this new configuration
 
-`cd ~/workdir/my-nodejs-app-config && git add . && git commit -m 'adding demo2 namespace'`{{execute T1}}
-
-`git push`{{execute T1}}
+`cd ~/workdir/my-nodejs-app-config && git add . && git commit -m 'adding demo2 namespace' && git push`{{execute T1}}
 
 ---
 
-In Argo CD, watch the `namespaces application` to see Argo CD automatically sync the application and create the demo2 namespace. Hit the `Refresh` button if it does not update.
+In Argo CD, click on the `namespaces` application and watch Argo CD as it automatically syncs the application and creates the demo2 namespace. Hit the `Refresh` button if it does not update after a few minutes.
 
 You should now see a `demo2` namespace in the UI.
 
-In the Katacoda terminal, verify the `demo2` namespace was created
+Verify the `demo2` namespace was created
 
 `kubectl get ns`{{execute T1}}
 

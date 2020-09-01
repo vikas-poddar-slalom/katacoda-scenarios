@@ -2,7 +2,7 @@
   "title": "Session 9 - Lab 3 - GitOps with ArgoCD",
   "description": "Building a GitOps Pipeline leveraging ArgoCD",
   "difficulty": "Advanced",
-  "time": "20-25 minutes",
+  "time": "20-30 minutes",
   "details": {
     "steps": [
       {

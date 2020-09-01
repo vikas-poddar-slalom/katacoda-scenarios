@@ -46,8 +46,10 @@ Initiate a port-forward to access the Argo CD GUI
 
 We have to add `--address 0.0.0.0` to allow the port-forward to allow the Katacoda Proxy work with the forwarding.
 
-After port-forwarding, select the `Argo CD` tab to open a browser window to the GUI. *You will need to Refresh/Try Again to reload the page*
+---
 
-Or click the link https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+After port-forwarding, select the `Argo CD` tab above to open a browser window to the GUI. *You will need to Refresh/Try Again to reload the page*
 
-You should be directed to a login page
+Or click the link https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com to open in a browser tab.
+
+You should be directed to a login page.

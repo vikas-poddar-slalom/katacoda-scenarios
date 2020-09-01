@@ -19,6 +19,8 @@ email: Slalom email
 password: something secure that you will remember
 ```
 
+**Keep your GitLab credentials handy as you will be prompted for them several times during Lab 2 and 3**
+
 ### 2. Create Repositories
 
 In GitLab, create 2 blank projects with a visibility level of private; for the slugs, use:

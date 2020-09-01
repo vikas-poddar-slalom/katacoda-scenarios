@@ -12,11 +12,7 @@ Copy the `nodeapp-svc.yml` file to your k8s config directory and push to the rep
 
 `cd ~/workdir/config && cp ~/assets/nodeapp-svc.yml ./workloads/.`{{execute}}
 
-`git add .`{{execute}}
-
-`git commit -m "Adding Service"`{{execute}}
-
-`git push`{{execute}}
+`git add . && git commit -m "Adding Service" && git push`{{execute}}
 
 ---
 

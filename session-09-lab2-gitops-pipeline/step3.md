@@ -30,8 +30,4 @@ The line should finally look like `image: registry.gitlab.com/vikas-poddar-slalo
 
 Now you can push the k8s manifests to your config repository
 
-`git add .`{{execute}}
-
-`git commit -m "Initial commit"`{{execute}}
-
-`git push -u origin master`{{execute}}
+`git add . && git commit -m "Initial commit" && git push -u origin master`{{execute}}

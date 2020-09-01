@@ -24,11 +24,7 @@ Now commit and push your code to GitLab
 
 `cd ~/workdir/app`{{execute}}
 
-`git add .`{{execute}}
-
-`git commit -m "Adding new get by ID endpoint"`{{execute}}
-
-`git push`{{execute}}
+`git add . && git commit -m "Adding new get by ID endpoint" && git push`{{execute}}
 
 ## 2. Pipeline
 

@@ -14,7 +14,7 @@ You can try it now with the `namespaces` application
 
 After rolling back, verify the `demo2` namespace is deleted
 
-`kubectl get ns`{{execute}}
+`kubectl get ns`{{execute T1}}
 
 # Congrats
 

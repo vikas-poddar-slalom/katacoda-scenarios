@@ -94,11 +94,7 @@ Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registr
 
 Before you commit and push the new `config/namespaces/image-pull-secret.yaml` file to GitLab, open the file in the editor and remove the lines with "creationTimestamp", "resourceVersion", and "uid"
 
-`git add .`{{execute}}
-
-`git commit -m "Adding image pull secret"`{{execute}}
-
-`git push -u origin master`{{execute}}
+`git add . && git commit -m "Adding image pull secret" && git push`{{execute}}
 
 ---
 
