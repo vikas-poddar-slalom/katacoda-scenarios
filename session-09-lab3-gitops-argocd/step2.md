@@ -4,15 +4,11 @@ In this step, you will install the Argo CD operator into your cluster.
 
 Argo provides the k8s manifest file to do this; to follow a secure deployment model and to ensure the release that we use stays consistent, instead of directly installing the latest manifest from the internet, you can use the pre-downloaded file provided as part of this lab. The latest file is available at https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-## 1. Inspect Manifest
+## 1. Install Manifest
+
+Copy the provided install file
 
 `cd ~/workdir && cp ~/assets/argo-cd-install.yaml .`{{execute}}
-
-You can view the manifest in the UI editor above.
-
-`More content to point stuff out in the manifest.`
-
-## 2. Install
 
 Create an `argocd` namespace and apply the manifest
 
@@ -36,7 +32,7 @@ argocd-server-7cb78565f5-pr75m                   1/1     Running   0          2m
 
 Use `ctrl+c` to exit the watch
 
-## 3. Open the Argo CD GUI
+## 2. Open the Argo CD GUI
 
 Argo CD provides a UI that makes it easy to manage your deployments.
 

@@ -1,6 +1,6 @@
 # Configuration Repository
 
-In this step, you will setup your Config Repository with 2 k8s manifests to create your namespace and your deployment. 
+In this step, you will setup your Config Repository with 2 k8s manifests to create your namespace and your deployment.
 
 ## 1. Configuration Repository
 
@@ -8,7 +8,7 @@ Push the k8s manifest files to the configuration repository. This repository wil
 
 Copy the k8s_config.tgz file to your working directory, untar it, and push the code to your application repository
 
-`mkdir -p ~/workdir/tmp && cd ~/workdir/tmp && cp ~/assets/k8s_config.tgz . `{{execute}}
+`mkdir -p ~/workdir/tmp && cd ~/workdir/tmp && cp ~/assets/k8s_config.tgz .`{{execute}}
 
 `tar xvf k8s_config.tgz && mv k8s_config ~/workdir/config && cd ~/workdir && rm -rf tmp`{{execute}}
 
@@ -24,7 +24,7 @@ Using the UI editor, in the `config/workloads/nodeapp-dep.yaml`, replace `<YOUR-
 
 Also replace the image version **1.0.0** with the version from your container registry in GitLab. Find it by navigating to you Container Registry and selecting your image name. This will let Kubernetes find the initial starting tag and then let Flux maintain auto-deploy with new tags afterwards.
 
-The final line should look like `image: registry.gitlab.com/vikas-poddar-slalom/my-nodejs-app:1.0.703198003` but with your own values
+The line should finally look like `image: registry.gitlab.com/vikas-poddar-slalom/my-nodejs-app:1.0.703198003` but with your own values
 
 ---
 
