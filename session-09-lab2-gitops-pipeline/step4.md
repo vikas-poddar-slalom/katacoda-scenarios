@@ -15,11 +15,7 @@ Within the Katacoda environment, sometimes SSH to GitLab does not work, so for t
 
 Back in Katacoda, create a k8s secret with this token
 
-Copy and execute with your token
-
-`GIT_AUTHKEY="<access-token-generated-password>"`{{copy}}
-
-Create a `flux` namespace
+First, create a `flux` namespace
 
 `kubectl create ns flux`{{execute}}
 
@@ -28,9 +24,17 @@ $ kubectl create ns flux
 namespace/flux created
 ```
 
+---
+
+Copy and execute with your token
+
+`GIT_AUTHKEY="<access-token-generated-password>"`{{copy}}
+
 Create the secret
 
 `kubectl create secret generic flux-git-auth --from-literal=GIT_AUTHUSER=${GLUSER} --from-literal=GIT_AUTHKEY=${GIT_AUTHKEY} -n flux`{{execute}}
+
+`kubectl describe secret flux-git-auth -n flux -o yaml`{{execute}}
 
 This will result in a secret that has the structure
 
