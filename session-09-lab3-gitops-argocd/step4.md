@@ -8,7 +8,9 @@ In production scenarios, the former method is preferred as it allows for greater
 
 ---
 
-To rollback, simply select the `History and Rollback` button in the application and select the revision you want to rollback to.
+*Note: In my testing, this did not work. If it doesn't work for you, it is expected; if it does work for you, you are a wizard. In any case, the preferred method for doing rollbacks is still via your source control.*
+
+To rollback, select the `History and Rollback` button in the application and select the revision you want to rollback to.
 
 You can try it now with the `namespaces` application
 

@@ -36,7 +36,7 @@ Use `ctrl+c` to exit the watch
 
 Argo CD provides a UI that makes it easy to manage your deployments.
 
-In Lab 2, we saw Flux synchronize with our configuration, but all of our interactions were via the command line, and as you could see, if something failed, there was no immediate feedback on status. Additionally, you could configure Flux to only watch one repository at a time.
+In Lab 2, we saw Flux synchronize with our configuration, but all of our interactions were via the command line, and as you could see, if something failed, there was no immediate feedback on status. Additionally, you could configure Flux to only watch one repository.
 
 Argo improves upon these challenges and more. You can see a full list of features at https://argoproj.github.io/argo-cd/#features
 
