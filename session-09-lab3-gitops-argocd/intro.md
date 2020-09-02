@@ -20,9 +20,6 @@ This tutorial could be done in free tier of each service.
 
 This lab will expand on GitOps pipelines from the previous lab by setting up Argo CD to replace Flux CD to handle your continuos delivery system.
 
-We will build the following components
-1. An app repository with a simple NodeJS API hosted in GitLab CI
-1. A GitLab CI job that watches for commits to the app repository
-1. App commits are auto-built and the generated Docker image is published to an image repository hosted in GitLab CI
+We will use the components from Lab 2 and add to them
 1. Argo CD will monitor a config repository to sync deployments of the k8s config files
-1. Argo CD will also monitor GitLab CI for new app images and auto-deploy the images to the k8s cluster
+1. Explore Argo CD GUI to maintain and manage application lifecycle

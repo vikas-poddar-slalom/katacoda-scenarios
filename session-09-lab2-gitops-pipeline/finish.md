@@ -4,7 +4,6 @@ Thank you for taking the time to complete the lab.
 
 We hope in after completing this lab, you have a better understanding of GitOps fundementals and how they can tie into an existing traditional DevOps model.
 
-
 ## Cleanup
 
 **If you plan to do Lab 3, please keep your repositories, pipelines, and registry intact as we will be using those.**
