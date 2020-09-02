@@ -1,8 +1,8 @@
 # Install and Configure the Flux Operator
 
-Now you can install the Flux Operator in your minikube cluster. This will be similar to Lab 1 where we did the same thing.
+Now you can install the Flux Operator in your minikube cluster. This will be similar to Lab 1 where we did the same thing using `fluxctl`.
 
-For this install, unlike Lab 1, we will install using a yaml configuration. The provided file has the following lines added to the `Deployment` to allow use to use the Deploy Token created in the previous step
+For this install, unlike Lab 1 however, we will install using a YAML manifest. The provided file has the following lines added to the `Deployment` to allow use to use the Deploy Token created in the previous step
 
 ```yaml
 envFrom:
@@ -65,7 +65,7 @@ fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
 
 ---
 
-In this example we are using a simple example of a webservice that returns a message on the `localhost:8181/listUsers` endpoint.
+In this lab we are using a simple example of a webservice that returns a message on the `localhost:8181/listUsers` endpoint.
 
 Before we make a change and verify a re-deployment, lets see that Flux has installed this service into the cluster.
 
@@ -90,6 +90,7 @@ Error: git repository ... is not ready to sync
 Full error message: git repo has been cloned but not yet checked for write access
 Run 'fluxctl sync --help' for usage.
 ```
+
 Try running the sync command again
 
 ## 4. Add a container registry secret
@@ -144,6 +145,8 @@ Flux transparently looks at the image pull secrets that you attach to workloads 
 If everything has been configured correctly so far, you should be able to watch for changes in your cluster and see the `nodeapp` deployment running after a little while.
 
 `kubectl get pods -n demo --watch`{{execute}}
+
+Expect to see
 ```
 $ kubectl get pods -n demo --watch
 NAME                       READY   STATUS              RESTARTS   AGE

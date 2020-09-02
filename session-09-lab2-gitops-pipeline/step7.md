@@ -75,17 +75,17 @@ Describe the pod to see the container image version is updated
 
 `kubectl describe pod $POD_NAME -n demo`{{execute}}
 
-Look for a line in the Events as such
+Look for a line in the `Events` as such
 ```
 Normal  Pulled     77s   kubelet, minikube  Successfully pulled image "registry.gitlab.com/vikas-poddar-slalom/my-nodejs-app:1.0.703238796"
 ```
-Compare that the image version is the latest image in your registry in Gitlab.
+Verify that the image version from the logs is the latest image in your registry in Gitlab.
 
 *If you think back to Step 5, we added an image pull secret. Flux transparently uses that secret to monitor for updated images*
 
 ## 5. Verify the new deployment
 
-The new image has a new endpoint to get user by ID. Let's hit this new endpoint.
+The new image has a new endpoint to get a user by ID. Let's hit this new endpoint.
 
 `export CIP=$(kubectl get services -n demo -l "app=nodeapp" -o jsonpath="{.items[0].spec.clusterIP}")`{{execute}}
 
@@ -95,4 +95,4 @@ Expect to see a JSON response with 1 user.
 
 # Congratulations!!
 
-Congrats! In this lab, you have successfully configured an application pipeline to auto-build your code using traditional DevOps and Flux synchronize your deployment using GitOps.
+Congrats! In this lab, you have successfully configured an application pipeline to auto-build your code using traditional DevOps and FluxCD to synchronize your deployment using GitOps.
