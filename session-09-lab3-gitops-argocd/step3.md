@@ -152,7 +152,7 @@ Expect to see a JSON response with 4 users.
 
 Lets enable auto-sync on the `namespaces` application and watch ArgoCD automatically sync it.
 
-To do this, select the **namespaces application** in Argo CD > **App Details** in the top left > **Edit** > **Enable Auto-Sync** > **Ok** > **Save** > Click on the 'X' to close the pop-out
+To do this, select the **namespaces application** in Argo CD > **App Details** in the top left > **Edit** > **Enable Auto-Sync** > **Ok** > Enable **Prune Resources** > **Save** > Click on the 'X' to close the pop-out
 
 *Note: When I did this, the setting wouldn't save the first time so I had to do the above steps again to persist the change*
 
@@ -178,7 +178,7 @@ Verify the `demo2` namespace was created
 
 ---
 
-There are other options during auto-sync to allow you to control the sync and cluster behavior.
+There are other multiple options during auto-sync to allow you to control the sync and cluster behavior.
 1. pruning of resources
-2. enforcing strict state syncing with the Git repository.
+2. self-healing
 To learn more, you can read about it at https://argoproj.github.io/argo-cd/user-guide/auto_sync/

@@ -124,8 +124,6 @@ Then use `kubectl` to get the yaml for this secret. Every namespace that needs t
 
 `kubectl get secret my-nodeapp-registry-secret -n demo -o yaml > namespaces/image-pull-secret.yaml`{{execute}}
 
-Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
-
 Before you commit and push the new `config/namespaces/image-pull-secret.yaml` file to GitLab, open the file in the editor and remove the lines with "creationTimestamp", "resourceVersion", and "uid"
 
 `git add . && git commit -m "Adding image pull secret" && git push`{{execute}}
@@ -155,6 +153,10 @@ nodeapp-74d66d8cb4-nws2z   1/1     Running             0          39s
 ```
 
 Press `ctrl+c` in the terminal to exit the `watch`
+
+---
+
+Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
 
 ---
 
