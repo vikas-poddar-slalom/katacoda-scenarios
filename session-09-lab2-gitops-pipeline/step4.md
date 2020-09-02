@@ -34,7 +34,7 @@ Create the secret
 
 `kubectl create secret generic flux-git-auth --from-literal=GIT_AUTHUSER=${GLUSER} --from-literal=GIT_AUTHKEY=${GIT_AUTHKEY} -n flux`{{execute}}
 
-`kubectl describe secret flux-git-auth -n flux -o yaml`{{execute}}
+`kubectl get secret flux-git-auth -n flux -o yaml`{{execute}}
 
 This will result in a secret that has the structure
 
