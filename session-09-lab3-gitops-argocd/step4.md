@@ -32,7 +32,7 @@ In the top-right **Options** dropdown, click **Revert**
 
 ---
 
-Switch back to the `Argo CD` tab in Katacoda and watch the namespace application. You should see the `demo2` be deleted after a few minutes. Hit `Refresh` if the view doesn't update on its own or if you are in a hurry.
+Switch back to the `Argo CD` tab in Katacoda and watch the `namespace` application. You should see the `demo2` namespace be deleted after a few minutes. Hit `Refresh` if the view doesn't update on its own or if you are in a hurry.
 
 Verify the `demo2` namespace is deleted from the cluster
 
