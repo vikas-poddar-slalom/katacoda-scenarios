@@ -53,8 +53,21 @@ Wait a few minutes and you should see the pod(s) restarted
 $ kubectl get pods -n demo --watch
 NAME                       READY   STATUS        RESTARTS   AGE
 nodeapp-6f76589966-v8bb2   1/1     Running       0          28s
-nodeapp-74d66d8cb4-nws2z   1/1     Terminating   0          8m27s
+nodeapp-74d66d8cb4-nws2z   0/1     Terminating   0          8m27s
 ```
+
+Ensure the original pod is fully terminated before continuing
+
+`kubectl get pods -n demo`{{execute}}
+
+Expect to see only the new pod in the result
+```
+$ kubectl get pods -n demo
+NAME                       READY   STATUS        RESTARTS   AGE
+nodeapp-6f76589966-v8bb2   1/1     Running       0          28s
+```
+
+---
 
 Describe the pod to see the container image version is updated
 

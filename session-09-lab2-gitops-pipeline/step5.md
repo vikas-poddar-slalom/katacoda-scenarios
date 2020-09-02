@@ -14,7 +14,7 @@ You can find these lines at line number 104
 
 ## 1. Edit the install file
 
-`cp ~/assets/flux-install.yaml ~/workdir/.`{{execute}}
+`cp ~/assets/flux-install.yml ~/workdir/.`{{execute}}
 
 Open the file in the UI editor above and modify lines 186, 190, and 191 by replacing `<your-user-name>` with your actual username e.g. `first-last-slalom`
 
@@ -22,7 +22,7 @@ Open the file in the UI editor above and modify lines 186, 190, and 191 by repla
 
 Install Flux in the cluster. With the installation, you are also configuring the repository that Flux will be watching and the username and email address Flux will use when making commits to that repository. Additionally, the `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository. You can omit it and have Flux watch the entire repository.
 
-`cat ~/workdir/flux-install.yaml | kubectl apply -f -`{{execute}}
+`cat ~/workdir/flux-install.yml | kubectl apply -f -`{{execute}}
 
 Expect to see
 
@@ -52,6 +52,19 @@ deployment "flux" successfully rolled out
 
 ## 3. Verify Flux is watching this repository
 
+Install `fluxctl`
+
+`snap install fluxctl --classic`{{execute}}
+
+Expect to see
+
+```
+2020-08-18T19:12:53Z INFO Waiting for restart...
+fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
+```
+
+---
+
 In this example we are using a simple example of a webservice that returns a message on the `localhost:8181/listUsers` endpoint.
 
 Before we make a change and verify a re-deployment, lets see that Flux has installed this service into the cluster.
@@ -63,9 +76,9 @@ By default, Flux git pull frequency is set to 5 minutes. You can tell Flux to sy
 Expect to see
 ```
 $ fluxctl sync --k8s-fwd-ns flux
-Synchronizing with ssh://git@gitlab.com/vikas-poddar-slalom/my-nodejs-app-config
-Revision of master to apply is 7ff201d
-Waiting for 7ff201d to be applied ...
+Synchronizing with https://first-last-slalom@gitlab.com/first-last-slalom/my-nodejs-app-config.git
+Revision of master to apply is c141e9b
+Waiting for c141e9b to be applied ...
 Done.
 ```
 
