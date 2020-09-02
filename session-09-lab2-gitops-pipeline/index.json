@@ -46,7 +46,8 @@
         {"file": "Dockerfile", "target": "/root/assets"},
         {"file": ".gitlab-ci.yml", "target": "/root/assets"},
         {"file": "k8s_config.tgz", "target": "/root/assets"},
-        {"file": "nodeapp-svc.yml", "target": "/root/assets"}
+        {"file": "nodeapp-svc.yml", "target": "/root/assets"},
+        {"file": "flux-install.yml", "target": "/root/assets"}
       ]
     }
   },
