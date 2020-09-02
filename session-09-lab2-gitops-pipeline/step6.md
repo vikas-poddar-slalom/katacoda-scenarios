@@ -1,6 +1,6 @@
 # Deploy using Flux
 
-In this step we will explore adding a new k8s manifest for a Service to the Config Repository and will see Flux synchronize the state of the cluster with the configuration.
+In this step we will explore adding a new k8s manifest for a `Service` to the Config Repository and will see Flux synchronize the state of the cluster with the configuration.
 
 ## 1. Commit a small change
 
@@ -22,7 +22,7 @@ By default, Flux git pull frequency is set to 5 minutes. You can tell Flux to sy
 
 ```
 $ fluxctl sync --k8s-fwd-ns flux
-Synchronizing with ssh://git@github.com/vikas-poddar-slalom/flux-get-started
+Synchronizing with ...
 Revision of master to apply is 7ff201d
 Waiting for 7ff201d to be applied ...
 Done.

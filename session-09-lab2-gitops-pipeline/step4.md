@@ -1,19 +1,26 @@
-# Install the Flux Operator
+# Setup GitLab to use Flux over HTTPS
 
-Now you can install the Flux Operator in your minikube cluster. This will be similar to Lab 1 where we did the same thing.
+Within the Katacoda environment, sometimes SSH to GitLab does not work, so for the purposes of this lab, we will use the HTTPS protocol to connect Flux to the repository. To do this, we need to setup a deploy token within the `App Config` project and configure Flux to use a username/password to connect to the GitLab repository.
 
-Following the documentation at `https://docs.fluxcd.io/en/latest/references/fluxctl/`, install Flux using `snap`
+## 1. Create a personal access token to be used as the GIT_AUTHKEY
 
-`snap install fluxctl --classic`{{execute}}
+1. Sign in to GitLab.
+1. Navigate to the **App Config** project > **Settings** > **Repository**
+1. Expand **Deploy Tokens**
+1. Give the token a name (flux-deploy-key) and expiration date (tomorrow)
+1. Give the token all scopes
+1. Click the **Create deploy token** button
+1. Make sure the save the generated username and password somewhere like a text file. If you do not save the password, you will need to create another token
 
-```
-2020-08-18T19:12:53Z INFO Waiting for restart...
-fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
-```
+## 2. Create k8s secret
 
-This command can take a few minutes to complete.
+Back in Katacoda, create a k8s secret with this token
 
----
+Copy and execute these commands with your values
+
+`GIT_AUTHUSER=<deploy-token-generated-username>`{{copy}}
+
+`GIT_AUTHKEY=<deploy-token-generated-password>`{{copy}}
 
 Create a `flux` namespace
 
@@ -24,43 +31,18 @@ $ kubectl create ns flux
 namespace/flux created
 ```
 
----
+Create the secret
 
-Install Flux in the cluster
+`kubectl create secret generic flux-git-auth --from-literal=GIT_AUTHUSER=${GIT_AUTHUSER} --from-literal=GIT_AUTHKEY=${GIT_AUTHKEY} -n flux`{{execute}}
 
-```
-fluxctl install \
---git-user=${GLUSER} \
---git-email=${GLUSER}@users.noreply.gitlab.com \
---git-url=git@gitlab.com:${GLUSER}/my-nodejs-app-config \
---git-path=namespaces,workloads \
---namespace=flux | kubectl apply -f -
-```{{execute}}
+This will result in a secret that has the structure
 
-Expect to see
-
-```
-serviceaccount/flux created
-clusterrole.rbac.authorization.k8s.io/flux created
-clusterrolebinding.rbac.authorization.k8s.io/flux created
-deployment.apps/flux created
-secret/flux-git-deploy created
-deployment.apps/memcached created
-service/memcached created
-```
-
-The `--git-path=namespaces,workloads` tells Flux to only watch these filepaths in the repository. You can omit it and have Flux watch the entire repository.
-
----
-
-Wait for Flux to start
-
-`kubectl -n flux rollout status deployment/flux`{{execute}}
-
-Expect to see a successful roll out
-
-```
-$ kubectl -n flux rollout status deployment/flux
-Waiting for deployment "flux" rollout to finish: 0 of 1 updated replicas are available...
-deployment "flux" successfully rolled out
+```yaml
+apiVersion: v1
+data:
+  GIT_AUTHKEY: <base64 encoded token/password>
+  GIT_AUTHUSER: <base64 encoded username>
+kind: Secret
+type: Opaque
+metadata:
 ```

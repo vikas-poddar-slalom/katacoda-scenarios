@@ -29,7 +29,7 @@ In GitLab, create 2 blank projects with a visibility level of private; for the s
 
 To create a new project, click the drop down next to the `Search` bar.
 
-If you want, for ease of use, and if you are already familiar with Git CLI, you can use it via SSH/HTTPS. But for the purposes of this lab, we will only interact with GitLab via the browser.
+If you want, for ease of use, and if you are already familiar with Git CLI, you can use setup SSH access in your account. But for the purposes of this lab, we will be doing HTTPS as it requires less setup.
 
 ### 3. Start the minikube cluster
 

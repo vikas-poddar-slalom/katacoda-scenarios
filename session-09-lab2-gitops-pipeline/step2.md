@@ -40,13 +40,13 @@ This will push the starter application code to your repository
 
 ## 2. Docker and Image Registry
 
-With GitLab, your new project already comes with a container registry. To utilize this, we will define a Dockerfile which builds a Docker image for your Node application and in the next step create a pipeline that will publish images to this repository
+With GitLab, your new project already comes with a container registry. We will define a Dockerfile which builds a Docker image for your Node application and in the next step create a pipeline that will publish images to this registry.
 
 Copy the `Dockerfile` to your application directory
 
 `cp ~/assets/Dockerfile .`{{execute}}
 
-Before you push to this file, verify that it build correctly
+Before you push to this file, verify that it builds correctly
 
 `docker build .`{{execute}}
 
@@ -66,7 +66,7 @@ Copy the `.gitlab-ci.yml` file to your application directory and push to GitLab.
 
 `cp ~/assets/.gitlab-ci.yml .`{{execute}}
 
-Open this file in the UI editor above for an explanation of the configuration. Remember to place "<YOU-USER-NAME>" with your GitLab username e.g. first-last-slalom
+Open this file in the UI editor above for an explanation of the configuration.
 
 ---
 
@@ -109,13 +109,13 @@ containerize:
 
 Now push the pipeline to your app repository
 
-`git add . && git commit -m "Configuring Pipeline" && git push -u origin master`{{execute}}
+`git add . && git commit -m "Configuring Pipeline" && git push`{{execute}}
 
 Now that you have pushed your pipeline configuration to GitLab, you can view your pipeline configuration and status by
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project
 1. On the left side, select `CI / CD` > `Pipelines`
 
-Here you should see your pipeline running. You can click `status > 'containerize'` to navigate to the job where you can see console output.
+Here you should see your pipeline running. You can click the **running** status > **containerize** to navigate to the job where you can see its console output.
 
 Look for a `Job succeeded` message in the console output. The build may take a few minutes.
 
@@ -124,3 +124,5 @@ Look for a `Job succeeded` message in the console output. The build may take a f
 After it runs, verify your container image was published by
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project
 1. On the left side, select `Packages & Registries` > `Container Registry`
+
+You should see an image in the registry with the name `username/my-nodejs-app` with 1 tag

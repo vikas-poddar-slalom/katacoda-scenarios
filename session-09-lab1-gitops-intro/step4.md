@@ -6,7 +6,7 @@ Now that the operator is set up to react to changes in your repository's `worklo
 
 In this example we are using a simple example of a webservice and change its configuration to use a different message.
 
-Replace YOURUSER in https://github.com/YOURUSER/flux-get-started/blob/master/workloads/podinfo-dep.yaml with your GitHub ID), open the URL in your browser, edit the file (using the pencil icon), add `--ui-message='Welcome to Flux'` to the container command and commit the file directly to master.
+Replace YOURUSER in https://github.com/YOURUSER/flux-get-started/blob/master/workloads/podinfo-dep.yaml with your GitHub ID), open the URL in your browser, edit the file (using the pencil icon), add `--ui-message='Welcome to Flux'` to the container command and commit the file directly to master. Ensure your tabbing and spacing is correct; spacing is vital in YAML.
 
 Add the command to the list of commands as below
 ```
