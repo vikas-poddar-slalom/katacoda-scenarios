@@ -26,8 +26,8 @@ In order to control the operation of your cluster using GitOps, you'll need to h
 To Fork the repository:
 
 1. Make sure you are logged into your Github Account at `https://github.com/firstname-lastname-slalom`
-1. Open `https://github.com/fluxcd/flux-get-started` in your browser
-1. Click the ![Fork Icon](repo-fork.png) icon
+1. Open https://github.com/fluxcd/flux-get-started in your browser
+1. Click the `Fork` icon ![Fork Icon](repo-fork.png) 
 
 ### 3. Start the minikube cluster
 

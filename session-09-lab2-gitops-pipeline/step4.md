@@ -1,6 +1,6 @@
 # Setup GitLab to use Flux over HTTPS
 
-Within the Katacoda environment, sometimes SSH to GitLab does not work, so for the purposes of this lab, we will use the HTTPS protocol to connect Flux to the repository. To do this, we need to setup a deploy token within the `App Config` project and configure Flux to use a username/password to connect to the GitLab repository.
+Within the Katacoda environment, SSH to GitLab is flaky, so for the purposes of this lab, we will use the HTTPS protocol to connect Flux to the GitLab repository. To do this, we need to setup a deploy token within the `App Config` project and configure Flux to use a username/password to connect to the GitLab repository.
 
 ## 1. Create a personal access token to be used as the GIT_AUTHKEY
 
