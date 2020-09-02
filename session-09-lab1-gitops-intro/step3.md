@@ -20,7 +20,7 @@ The command should provide you with a public key:
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl05 [...]
 ```
 
-You now need to copy this key and add it to github as a R/W key for your remote repository.
+You now need to copy this key (use right-click and copy if keyboard copy does not work) and add it to github as a R/W key for your remote repository.
 
 Open GitHub, navigate to your fork, go to **Setting** > **Deploy keys**, click on **Add deploy key**, give it a `Title` like `Deploy Key`, check **Allow write access**, paste the public key and click Add key.
 

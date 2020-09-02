@@ -10,11 +10,11 @@ Of course, you can also configure the Flux operator to use a private git host, b
 
 ### 1. Setup GitLab Account
 
-If you do not already have a GitLab account, create one by visiting https://gitlab.com/
+If you do not already have a GitLab account, create one by visiting https://about.gitlab.com/pricing/ and selecting `Start Now` under Developer (should be $0)
 
 Sign up for an account with
 ```
-username: first-last-slalom
+username: firstname-lastname-slalom
 email: Slalom email
 password: something secure that you will remember
 ```

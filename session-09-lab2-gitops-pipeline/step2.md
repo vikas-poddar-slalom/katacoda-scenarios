@@ -109,7 +109,7 @@ containerize:
 
 Now push the pipeline to your app repository
 
-`git add . && git commit -m "Configuring Pipeline" && git push`{{execute}}
+`git add . && git commit -m "Configuring Pipeline" && git push -u origin master`{{execute}}
 
 Now that you have pushed your pipeline configuration to GitLab, you can view your pipeline configuration and status by
 1. Navigate to the `projects` view https://gitlab.com/dashboard/projects and select the `My Nodejs App` project

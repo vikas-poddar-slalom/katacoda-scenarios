@@ -67,7 +67,7 @@ fluxctl 1.20.1 from Flux CD developers (weaveflux) installed
 
 In this lab we are using a simple example of a webservice that returns a message on the `localhost:8181/listUsers` endpoint.
 
-Before we make a change and verify a re-deployment, lets see that Flux has installed this service into the cluster.
+Before we make a change and verify a re-deployment, lets see that Flux has installed this app into the cluster.
 
 By default, Flux git pull frequency is set to 5 minutes. You can tell Flux to sync the changes immediately with:
 
@@ -99,13 +99,15 @@ The secret for image pull needs to be in a specific base64 encoded JSON string. 
 
 Using `kubectl` commands, add a secret that will be used to pull images from the repository
 
+First login to the GitLab Registry
+
 `docker login registry.gitlab.com`{{execute}}
 
-Enter your username and password and login to the registry. These will the same credential you use for git
+Enter your username and password and login to the registry. These will the same credentials you use for GitLab
 
 Upon success, expect to see something like:
 ```bash
-Username: vikas.poddar@slalom.com
+Username: vikas-poddar-slalom
 Password:
 WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
 Configure a credential helper to remove this warning. See
@@ -114,7 +116,7 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-Create the secret; this secret will be used as an image pull secret
+Create the secret; this secret will be used as an image pull secret for your deployment
 
 `kubectl create secret generic my-nodeapp-registry-secret --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson -n demo`{{execute}}
 
@@ -126,7 +128,7 @@ Then use `kubectl` to get the yaml for this secret. Every namespace that needs t
 
 Before you commit and push the new `config/namespaces/image-pull-secret.yaml` file to GitLab, open the file in the editor and remove the lines with "creationTimestamp", "resourceVersion", and "uid"
 
-`git add . && git commit -m "Adding image pull secret" && git push`{{execute}}
+`git add . && git commit -m "Adding image pull secret" && git push -u origin master`{{execute}}
 
 ---
 
@@ -156,10 +158,6 @@ Press `ctrl+c` in the terminal to exit the `watch`
 
 ---
 
-Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
-
----
-
 Validate the service deployed correctly
 
 `kubectl -n demo port-forward deployment/nodeapp 8181:8181 &`{{execute}}
@@ -171,3 +169,7 @@ Press `enter` to get the prompt back
 Expect to see a JSON response in your terminal
 
 Use `kill %1`{{execute}} to kill the port forwarding
+
+---
+
+Clean up the secret from the namespace `kubectl delete secret my-nodeapp-registry-secret -n demo`{{execute}} and let Flux take over handling it.
